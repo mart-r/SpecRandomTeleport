@@ -5,6 +5,7 @@ import me.ford.srt.commands.subcommands.AddActivationSub;
 import me.ford.srt.commands.subcommands.AddLocationSub;
 import me.ford.srt.commands.subcommands.ListLocationsSub;
 import me.ford.srt.commands.subcommands.MoveLocationSub;
+import me.ford.srt.commands.subcommands.RemoveActivationSub;
 import me.ford.srt.commands.subcommands.RemoveLocationSub;
 import me.ford.srt.commands.subcommands.UseSub;
 
@@ -19,6 +20,7 @@ public class SRTCommand extends ParentCommand {
         addSubCommand("list", new ListLocationsSub(srt.getLocationProvider(), srt.getMessages()));
         addSubCommand("use", new UseSub(srt.getLocationProvider(), srt.getMessages()));
         addSubCommand("addactviation", new AddActivationSub(srt.getActivationLocationProvider(), srt.getMessages()));
+        addSubCommand("removeactivation", new RemoveActivationSub(srt.getActivationLocationProvider(), srt.getMessages()));
     }
 
     @Override

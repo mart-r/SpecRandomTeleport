@@ -102,7 +102,7 @@ public class Messages extends CustomConfigHandler {
     // actvation
 
     public String getStartedWaitingMessage() {
-        return getMessage("need-to-click", "Click on a block to mark it as an activation block");
+        return getMessage("need-to-click-activation", "Click on a block to mark it as an activation block");
     }
 
     public String getUnsuitableBlockMessage() {
@@ -115,6 +115,18 @@ public class Messages extends CustomConfigHandler {
 
     public String getMessage(String path, String def) {
         return ChatColor.translateAlternateColorCodes('&', getConfig().getString(path, def));
+    }
+
+    public String getStartedWaitingDelActivateMessage() {
+        return getMessage("need-to-click-remove-activation", "Click on a block to remove it as an activation block");
+    }
+
+    public String getNotAnActivationBlockMessage() {
+        return getMessage("not-an-activation-block", "This is not an activation block");
+    }
+
+    public String getDeletedActivationBlockMessage() {
+        return getMessage("deleted-activation-block", "This block was removed as an activation block!");
     }
 
 }

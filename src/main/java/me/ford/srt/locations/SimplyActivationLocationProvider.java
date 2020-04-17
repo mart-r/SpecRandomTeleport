@@ -1,6 +1,7 @@
 package me.ford.srt.locations;
 
 import java.util.Collection;
+import java.util.Map.Entry;
 
 import org.bukkit.Location;
 
@@ -33,6 +34,21 @@ public class SimplyActivationLocationProvider extends AbstractLocationProvider i
     @Override
     public void markAsActivationLocation(Location loc) {
         setLocation(String.valueOf(System.currentTimeMillis()), loc);
+    }
+
+    @Override
+    public void removeAsActivationLocation(Location loc) {
+        String name = null;
+        for (Entry<String, Location> entry : super.locations.entrySet()) {
+            if (entry.getValue().distanceSquared(loc) < TOL_SQUARED) {
+                name = entry.getKey();
+                break;
+            }
+        }
+        if (name == null) {
+            throw new IllegalArgumentException("Could not find a matching acvitation location to remove for location: " + loc);
+        }
+        removeLocation(name);
     }
 
     @Override

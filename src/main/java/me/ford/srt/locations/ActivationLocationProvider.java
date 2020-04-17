@@ -10,6 +10,8 @@ public interface ActivationLocationProvider {
 
     public void markAsActivationLocation(Location loc);
 
+    public void removeAsActivationLocation(Location loc);
+
     public ActivationListener getListener();
 
 }
