@@ -11,8 +11,8 @@ import me.ford.srt.config.Messages;
 import me.ford.srt.locations.ActivationLocationProvider;
 
 public class RemoveActivationSub extends SubCommand {
-    private static final String USAGE = "/srt addactivation";
-    private static final String PERMS = "srt.commands.addactivation";
+    private static final String USAGE = "/srt removeactivation";
+    private static final String PERMS = "srt.commands.removeactivation";
     private final ActivationLocationProvider provider;
     private final Messages messages;
 

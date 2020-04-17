@@ -38,3 +38,6 @@ permissions:
   srt.commands.addactivation:
     description: Allow adding an activation block
     default: true
+  srt.commands.removeactivation:
+    description: Allow removing an activation block
+    default: true
