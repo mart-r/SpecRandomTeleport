@@ -1,6 +1,8 @@
 package me.ford.srt.locations;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map.Entry;
 
 import org.bukkit.Location;
@@ -23,7 +25,8 @@ public class SimplyActivationLocationProvider extends AbstractLocationProvider i
     @Override
     public boolean isActivationLocation(Location loc) {
         for (Location aLoc : locations) {
-            if (aLoc.getWorld() != loc.getWorld()) continue;
+            if (aLoc.getWorld() != loc.getWorld())
+                continue;
             if (aLoc.distanceSquared(loc) < TOL_SQUARED) {
                 return true;
             }
@@ -46,7 +49,8 @@ public class SimplyActivationLocationProvider extends AbstractLocationProvider i
             }
         }
         if (name == null) {
-            throw new IllegalArgumentException("Could not find a matching acvitation location to remove for location: " + loc);
+            throw new IllegalArgumentException(
+                    "Could not find a matching acvitation location to remove for location: " + loc);
         }
         removeLocation(name);
     }
@@ -54,6 +58,11 @@ public class SimplyActivationLocationProvider extends AbstractLocationProvider i
     @Override
     public ActivationListener getListener() {
         return listener;
+    }
+
+    @Override
+    public List<Location> getAllLocations() {
+        return new ArrayList<>(locations);
     }
 
 }

@@ -41,3 +41,6 @@ permissions:
   srt.commands.removeactivation:
     description: Allow removing an activation block
     default: op
+  srt.commands.listactivators:
+    description: Allow listing activation blocks
+    default: op

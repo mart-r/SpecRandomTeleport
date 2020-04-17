@@ -1,5 +1,6 @@
 package me.ford.srt.config;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -127,6 +128,27 @@ public class Messages extends CustomConfigHandler {
 
     public String getDeletedActivationBlockMessage() {
         return getMessage("deleted-activation-block", "This block was removed as an activation block!");
+    }
+
+    public String getActivationListMessage(List<Location> locations) {
+        StringBuilder builder = new StringBuilder(getListHeaderMessage(locations.size()));
+        for (Location loc : locations) {
+            builder.append("\n");
+            builder.append(getActivationListItemMessage(loc));
+        }
+        return builder.toString();
+    }
+
+    public String getActivationListHeaderMessage(int amount) {
+        return getMessage("activation-list-header", "All activations ({amount}):").replace("{amount}", String.valueOf(amount));
+    }
+
+    public String getActivationListItemMessage(Location loc) {
+        return getMessage("activation-list-item", "{world} at {x}, {y}, {z} (with {yaw}, {pitch})")
+                    .replace("{world}", loc.getWorld().getName())
+                    .replace("{x}", String.format("%5.2f", loc.getX())).replace("{y}", String.format("%5.2f", loc.getY()))
+                    .replace("{z}", String.format("%5.2f", loc.getZ()))
+                    .replace("{yaw}", String.format("%5.2f", loc.getYaw())).replace("{pitch}", String.format("%5.2f", loc.getPitch()));
     }
 
 }
