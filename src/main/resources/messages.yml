@@ -5,6 +5,9 @@ need-a-player: "Only a player can do this!"
 location-exists: "Location {name} already exists, use '/srp moveloc <name>' to move it here"
 added-location: "Added location {name} in {world} at {x}, {y}, {z} (with {yaw}, {pitch})"
 
-# /srp removeloc message
+# /srp removeloc messages
 location-does-not-exist: "Location {name} does not exist"
 removed-location: "Removed location {name} from {world} at {x}, {y}, {z} (with {yaw}, {pitch})"
+
+# /srp moveloc messages
+moved-location: "Moved location {name} to {world} at {x}, {y}, {z} (with {yaw}, {pitch})"
