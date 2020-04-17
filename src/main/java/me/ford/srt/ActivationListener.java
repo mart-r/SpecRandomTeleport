@@ -25,7 +25,7 @@ public class ActivationListener implements Listener {
         srt.getServer().getScheduler().runTaskAsynchronously(srt, ()-> lazyInit());
     }
 
-    public void addWaiting(Player player) {
+    public void addWaitingToActivate(Player player) {
         nextInteract.add(player.getUniqueId());
     }
     

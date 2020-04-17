@@ -35,7 +35,7 @@ public class AddActivationSub extends SubCommand {
         Player player = (Player) sender;
 
         // start waiting
-        provider.getListener().addWaiting(player);
+        provider.getListener().addWaitingToActivate(player);
         sender.sendMessage(messages.getStartedWaitingMessage());
         return true;
     }
