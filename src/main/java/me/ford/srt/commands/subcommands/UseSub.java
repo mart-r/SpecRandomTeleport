@@ -36,7 +36,7 @@ public class UseSub extends SubCommand {
         Player player = (Player) sender;
         String locName = provider.getRandomLocationName();
         if (locName == null) {
-            String msg = "There are not locations provided by the plugin! Set some locations or contact an admin for them to do so!";
+            String msg = "There are no locations provided by the plugin! Set some locations or contact an admin for them to do so!";
             sender.sendMessage(msg);
             return true;
         }
