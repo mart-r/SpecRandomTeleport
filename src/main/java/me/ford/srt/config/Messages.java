@@ -101,7 +101,7 @@ public class Messages extends CustomConfigHandler {
 
     // actvation
 
-    public String getStartedWaitingMessag() {
+    public String getStartedWaitingMessage() {
         return getMessage("need-to-click", "Click on a block to mark it as an activation block");
     }
 
