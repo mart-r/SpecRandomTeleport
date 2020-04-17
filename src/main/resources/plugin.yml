@@ -37,7 +37,7 @@ permissions:
     default: true
   srt.commands.addactivation:
     description: Allow adding an activation block
-    default: true
+    default: op
   srt.commands.removeactivation:
     description: Allow removing an activation block
-    default: true
+    default: op
