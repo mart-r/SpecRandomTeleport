@@ -10,15 +10,15 @@ import org.bukkit.util.StringUtil;
 
 import me.ford.srt.commands.SubCommand;
 import me.ford.srt.config.Messages;
-import me.ford.srt.locations.LocationProvider;
+import me.ford.srt.locations.AbstractLocationProvider;
 
 public class MoveLocationSub extends SubCommand {
     private static final String USAGE = "/srt moveloc <name>";
     private static final String PERMS = "srt.commands.moveloc";
-    private final LocationProvider provider;
+    private final AbstractLocationProvider provider;
     private final Messages messages;
 
-    public MoveLocationSub(LocationProvider provider, Messages messages) {
+    public MoveLocationSub(AbstractLocationProvider provider, Messages messages) {
         this.provider = provider;
         this.messages = messages;
     }

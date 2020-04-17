@@ -9,15 +9,15 @@ import org.bukkit.util.StringUtil;
 
 import me.ford.srt.commands.SubCommand;
 import me.ford.srt.config.Messages;
-import me.ford.srt.locations.LocationProvider;
+import me.ford.srt.locations.AbstractLocationProvider;
 
 public class RemoveLocationSub extends SubCommand {
     private static final String USAGE = "/srt removeloc <name>";
     private static final String PERMS = "srt.commands.removeloc";
-    private final LocationProvider provider;
+    private final AbstractLocationProvider provider;
     private final Messages messages;
 
-    public RemoveLocationSub(LocationProvider provider, Messages messages) {
+    public RemoveLocationSub(AbstractLocationProvider provider, Messages messages) {
         this.provider = provider;
         this.messages = messages;
     }
