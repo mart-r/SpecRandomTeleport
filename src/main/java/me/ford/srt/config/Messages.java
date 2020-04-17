@@ -1,5 +1,8 @@
 package me.ford.srt.config;
 
+import java.util.Map;
+import java.util.Map.Entry;
+
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 
@@ -57,6 +60,29 @@ public class Messages extends CustomConfigHandler {
 
     public String getMovedLocationMessage(String name, Location loc) {
         return getMessage("moved-location", "Moved location {name} to {world} at {x}, {y}, {z} (with {yaw}, {pitch})")
+                    .replace("{name}", name).replace("{world}", loc.getWorld().getName())
+                    .replace("{x}", String.format("%5.2f", loc.getX())).replace("{y}", String.format("%5.2f", loc.getY()))
+                    .replace("{z}", String.format("%5.2f", loc.getZ()))
+                    .replace("{yaw}", String.format("%5.2f", loc.getYaw())).replace("{pitch}", String.format("%5.2f", loc.getPitch()));
+    }
+
+    // srt list
+
+    public String getListMessage(Map<String, Location> locs) {
+        StringBuilder builder = new StringBuilder(getListHeader(locs.size()));
+        for (Entry<String, Location> entry : locs.entrySet()) {
+            builder.append("\n");
+            builder.append(getListItemMessage(entry.getKey(), entry.getValue()));
+        }
+        return builder.toString();
+    }
+
+    public String getListHeader(int amount) {
+        return getMessage("list-header", "All locations ({amount}):").replace("{amount}", String.valueOf(amount));
+    }
+
+    public String getListItemMessage(String name, Location loc) {
+        return getMessage("list-item", "{name}  in {world} at {x}, {y}, {z} (with {yaw}, {pitch})")
                     .replace("{name}", name).replace("{world}", loc.getWorld().getName())
                     .replace("{x}", String.format("%5.2f", loc.getX())).replace("{y}", String.format("%5.2f", loc.getY()))
                     .replace("{z}", String.format("%5.2f", loc.getZ()))

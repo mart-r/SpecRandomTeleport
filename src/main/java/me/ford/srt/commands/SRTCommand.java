@@ -2,6 +2,7 @@ package me.ford.srt.commands;
 
 import me.ford.srt.SpecRandomTeleport;
 import me.ford.srt.commands.subcommands.AddLocationSub;
+import me.ford.srt.commands.subcommands.ListLocationsSub;
 import me.ford.srt.commands.subcommands.MoveLocationSub;
 import me.ford.srt.commands.subcommands.RemoveLocationSub;
 
@@ -13,6 +14,7 @@ public class SRTCommand extends ParentCommand {
         addSubCommand("addloc", new AddLocationSub(srt.getLocationProvider(), srt.getMessages()));
         addSubCommand("removeloc", new RemoveLocationSub(srt.getLocationProvider(), srt.getMessages()));
         addSubCommand("moveloc", new MoveLocationSub(srt.getLocationProvider(), srt.getMessages()));
+        addSubCommand("list", new ListLocationsSub(srt.getLocationProvider(), srt.getMessages()));
     }
 
     @Override

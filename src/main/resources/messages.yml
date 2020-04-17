@@ -11,3 +11,7 @@ removed-location: "Removed location {name} from {world} at {x}, {y}, {z} (with {
 
 # /srp moveloc messages
 moved-location: "Moved location {name} to {world} at {x}, {y}, {z} (with {yaw}, {pitch})"
+
+# /srp list messages
+list-header: "All locations ({amount}):"
+list-item: "{name}  in {world} at {x}, {y}, {z} (with {yaw}, {pitch})"

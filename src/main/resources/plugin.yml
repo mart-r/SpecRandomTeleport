@@ -29,3 +29,6 @@ permissions:
   srt.commands.moveloc:
     description: Allow moving location
     default: op
+  srt.commands.list:
+    description: Allow seeing list of location
+    default: op

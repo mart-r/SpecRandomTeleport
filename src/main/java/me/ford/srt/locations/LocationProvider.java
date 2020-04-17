@@ -64,6 +64,10 @@ public class LocationProvider extends CustomConfigHandler {
         return loc;
     }
 
+    public Map<String, Location> getLocations() {
+        return new HashMap<>(locations);
+    }
+
     public Set<String> getNames() {
         return new HashSet<>(locations.keySet());
     }
