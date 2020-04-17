@@ -47,7 +47,7 @@ public class MoveLocationSub extends SubCommand {
 
         // move
         Location loc = player.getLocation();
-        provider.addLocation(locName, loc);
+        provider.setLocation(locName, loc);
         sender.sendMessage(messages.getMovedLocationMessage(locName, loc));
         return true;
     }

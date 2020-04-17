@@ -47,7 +47,7 @@ public class AddLocationSub extends SubCommand {
 
         // add
         Location loc = player.getLocation();
-        provider.addLocation(locName, loc);
+        provider.setLocation(locName, loc);
         sender.sendMessage(messages.getAddedLocationMessage(locName, loc));
         return true;
     }

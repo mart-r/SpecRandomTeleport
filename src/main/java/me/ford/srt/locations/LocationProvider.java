@@ -49,7 +49,7 @@ public class LocationProvider extends CustomConfigHandler {
         return locations.get(name) != null;
     }
 
-    public void addLocation(String name, Location loc) {
+    public void setLocation(String name, Location loc) {
         getConfig().set(name, loc);
         saveConfig();
         locations.put(name, loc);
