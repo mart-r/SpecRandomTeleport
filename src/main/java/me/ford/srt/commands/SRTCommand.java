@@ -1,6 +1,7 @@
 package me.ford.srt.commands;
 
 import me.ford.srt.SpecRandomTeleport;
+import me.ford.srt.commands.subcommands.AddActivationSub;
 import me.ford.srt.commands.subcommands.AddLocationSub;
 import me.ford.srt.commands.subcommands.ListLocationsSub;
 import me.ford.srt.commands.subcommands.MoveLocationSub;
@@ -17,6 +18,7 @@ public class SRTCommand extends ParentCommand {
         addSubCommand("moveloc", new MoveLocationSub(srt.getLocationProvider(), srt.getMessages()));
         addSubCommand("list", new ListLocationsSub(srt.getLocationProvider(), srt.getMessages()));
         addSubCommand("use", new UseSub(srt.getLocationProvider(), srt.getMessages()));
+        addSubCommand("addactviation", new AddActivationSub(srt.getActivationLocationProvider(), srt.getMessages()));
     }
 
     @Override

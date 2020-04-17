@@ -99,6 +99,20 @@ public class Messages extends CustomConfigHandler {
                     .replace("{yaw}", String.format("%5.2f", loc.getYaw())).replace("{pitch}", String.format("%5.2f", loc.getPitch()));
     }
 
+    // actvation
+
+    public String getStartedWaitingMessag() {
+        return getMessage("need-to-click", "Click on a block to mark it as an activation block");
+    }
+
+    public String getUnsuitableBlockMessage() {
+        return getMessage("unsuitable-block", "This block is unsuitable for activation");
+    }
+
+    public String getMarkedAsActivationMessage() {
+        return getMessage("marked-as-activation-block", "This block was marked as an activation block!");
+    }
+
     public String getMessage(String path, String def) {
         return ChatColor.translateAlternateColorCodes('&', getConfig().getString(path, def));
     }

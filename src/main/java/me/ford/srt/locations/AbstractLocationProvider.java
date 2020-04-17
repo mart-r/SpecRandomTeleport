@@ -13,7 +13,7 @@ import me.ford.srt.SpecRandomTeleport;
 import me.ford.srt.config.CustomConfigHandler;
 
 public abstract class AbstractLocationProvider extends CustomConfigHandler {
-    private final Map<String, Location> locations = new HashMap<>();
+    protected final Map<String, Location> locations = new HashMap<>();
     private final SpecRandomTeleport srt;
     private final Random random = ThreadLocalRandom.current();
 

@@ -18,3 +18,8 @@ list-item: "{name} in {world} at {x}, {y}, {z} (with {yaw}, {pitch})"
 
 # /srtp use messages
 teleporting: "Teleporting to random location {name} in {world} at {x}, {y}, {z} (with {yaw}, {pitch})"
+
+# actviation
+need-to-click: "Click on a block to mark it as an activation block"
+unsuitable-block: "This block is unsuitable for activation"
+marked-as-activation-block: "This block was marked as an activation block!"
