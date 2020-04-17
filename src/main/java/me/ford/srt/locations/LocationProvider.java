@@ -64,6 +64,10 @@ public class LocationProvider extends CustomConfigHandler {
         return loc;
     }
 
+    public Location getLocation(String name) {
+        return locations.get(name);
+    }
+
     public Map<String, Location> getLocations() {
         return new HashMap<>(locations);
     }
@@ -72,14 +76,14 @@ public class LocationProvider extends CustomConfigHandler {
         return new HashSet<>(locations.keySet());
     }
 
-    public Location getRandomLocation() {
+    public String getRandomLocationName() {
         if (locations.isEmpty()) {
-            throw new RuntimeException("No locations set!");
+            return null;
         }
         int amount = locations.size();
         int nr = random.nextInt(amount);
-        for (Location loc : locations.values()) { // iterating because the Collection is not ordered
-            if (nr == 0) return loc;
+        for (String name : locations.keySet()) { // iterating because the Collection is not ordered
+            if (nr == 0) return name;
             nr--;
         }
         throw new RuntimeException("Got random " + nr + "/" + amount + " and was unable to find the corresponding location - this really shouldn't be happening!");

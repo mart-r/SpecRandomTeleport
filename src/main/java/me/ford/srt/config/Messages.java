@@ -89,6 +89,16 @@ public class Messages extends CustomConfigHandler {
                     .replace("{yaw}", String.format("%5.2f", loc.getYaw())).replace("{pitch}", String.format("%5.2f", loc.getPitch()));
     }
 
+    // srt use
+
+    public String getTeleportingMessage(String name, Location loc) {
+        return getMessage("teleporting", "Teleporting to random location {name} in {world} at {x}, {y}, {z} (with {yaw}, {pitch})")
+                    .replace("{name}", name).replace("{world}", loc.getWorld().getName())
+                    .replace("{x}", String.format("%5.2f", loc.getX())).replace("{y}", String.format("%5.2f", loc.getY()))
+                    .replace("{z}", String.format("%5.2f", loc.getZ()))
+                    .replace("{yaw}", String.format("%5.2f", loc.getYaw())).replace("{pitch}", String.format("%5.2f", loc.getPitch()));
+    }
+
     public String getMessage(String path, String def) {
         return ChatColor.translateAlternateColorCodes('&', getConfig().getString(path, def));
     }

@@ -19,7 +19,7 @@ commands:
 permissions:
   srt.commands.main:
     description: Allow using the command
-    default: op
+    default: true
   srt.commands.addloc:
     description: Allow adding location to the pool
     default: op
@@ -32,3 +32,6 @@ permissions:
   srt.commands.list:
     description: Allow seeing list of location
     default: op
+  srt.commands.use:
+    description: Allow teleporting to one of the random locations
+    default: true

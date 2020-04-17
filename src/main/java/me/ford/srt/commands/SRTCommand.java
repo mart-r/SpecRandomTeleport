@@ -5,6 +5,7 @@ import me.ford.srt.commands.subcommands.AddLocationSub;
 import me.ford.srt.commands.subcommands.ListLocationsSub;
 import me.ford.srt.commands.subcommands.MoveLocationSub;
 import me.ford.srt.commands.subcommands.RemoveLocationSub;
+import me.ford.srt.commands.subcommands.UseSub;
 
 public class SRTCommand extends ParentCommand {
     private static final String USAGE = "/srt <subcommand> <args>";
@@ -15,6 +16,7 @@ public class SRTCommand extends ParentCommand {
         addSubCommand("removeloc", new RemoveLocationSub(srt.getLocationProvider(), srt.getMessages()));
         addSubCommand("moveloc", new MoveLocationSub(srt.getLocationProvider(), srt.getMessages()));
         addSubCommand("list", new ListLocationsSub(srt.getLocationProvider(), srt.getMessages()));
+        addSubCommand("use", new UseSub(srt.getLocationProvider(), srt.getMessages()));
     }
 
     @Override
