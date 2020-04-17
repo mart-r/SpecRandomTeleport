@@ -26,3 +26,6 @@ permissions:
   srt.commands.removeloc:
     description: Allow removing location from the pool
     default: op
+  srt.commands.moveloc:
+    description: Allow moving location
+    default: op

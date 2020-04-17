@@ -12,8 +12,8 @@ import me.ford.srt.config.Messages;
 import me.ford.srt.locations.LocationProvider;
 
 public class MoveLocationSub extends SubCommand {
-    private static final String USAGE = "/srt addloc <name>";
-    private static final String PERMS = "srt.commands.addloc";
+    private static final String USAGE = "/srt moveloc <name>";
+    private static final String PERMS = "srt.commands.moveloc";
     private final LocationProvider provider;
     private final Messages messages;
 
