@@ -59,6 +59,10 @@ public class CustomConfigHandler {
         }
     }
 
+    public String getFileName() {
+        return fileName;
+    }
+
     public File getFile() {
         return customConfigFile;
     }
