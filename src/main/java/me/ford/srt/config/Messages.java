@@ -69,7 +69,7 @@ public class Messages extends CustomConfigHandler {
     // srt list
 
     public String getListMessage(Map<String, Location> locs) {
-        StringBuilder builder = new StringBuilder(getListHeader(locs.size()));
+        StringBuilder builder = new StringBuilder(getListHeaderMessage(locs.size()));
         for (Entry<String, Location> entry : locs.entrySet()) {
             builder.append("\n");
             builder.append(getListItemMessage(entry.getKey(), entry.getValue()));
@@ -77,7 +77,7 @@ public class Messages extends CustomConfigHandler {
         return builder.toString();
     }
 
-    public String getListHeader(int amount) {
+    public String getListHeaderMessage(int amount) {
         return getMessage("list-header", "All locations ({amount}):").replace("{amount}", String.valueOf(amount));
     }
 
