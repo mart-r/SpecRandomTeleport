@@ -6,6 +6,7 @@ import java.util.List;
 import org.bukkit.Location;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.util.StringUtil;
 
 import me.ford.srt.commands.SubCommand;
 import me.ford.srt.config.Messages;
@@ -24,7 +25,11 @@ public class MoveLocationSub extends SubCommand {
 
     @Override
     public List<String> onTabComplete(CommandSender sender, String[] args) {
-        return new ArrayList<>();
+        List<String> list = new ArrayList<>();
+        if (args.length == 1) {
+            return StringUtil.copyPartialMatches(args[0], provider.getNames(), list);
+        }
+        return list;
     }
 
     @Override
