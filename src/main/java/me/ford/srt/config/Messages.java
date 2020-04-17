@@ -35,11 +35,8 @@ public class Messages extends CustomConfigHandler {
     }
 
     public String getAddedLocationMessage(String name, Location loc) {
-        return getMessage("added-location", "Added location {name} in {world} at {x}, {y}, {z} (with {yaw}, {pitch})")
-                    .replace("{name}", name).replace("{world}", loc.getWorld().getName())
-                    .replace("{x}", String.format("%5.2f", loc.getX())).replace("{y}", String.format("%5.2f", loc.getY()))
-                    .replace("{z}", String.format("%5.2f", loc.getZ()))
-                    .replace("{yaw}", String.format("%5.2f", loc.getYaw())).replace("{pitch}", String.format("%5.2f", loc.getPitch()));
+        return getLocationMessage("added-location", "Added location {name} in {world} at {x}, {y}, {z} (with {yaw}, {pitch})", loc)
+                    .replace("{name}", name);
     }
 
     // srt remove
@@ -50,21 +47,15 @@ public class Messages extends CustomConfigHandler {
     }
 
     public String getRemovedLocationMessage(String name, Location loc) {
-        return getMessage("removed-location", "Removed location {name} from {world} at {x}, {y}, {z} (with {yaw}, {pitch})")
-                    .replace("{name}", name).replace("{world}", loc.getWorld().getName())
-                    .replace("{x}", String.format("%5.2f", loc.getX())).replace("{y}", String.format("%5.2f", loc.getY()))
-                    .replace("{z}", String.format("%5.2f", loc.getZ()))
-                    .replace("{yaw}", String.format("%5.2f", loc.getYaw())).replace("{pitch}", String.format("%5.2f", loc.getPitch()));
+        return getLocationMessage("removed-location", "Removed location {name} from {world} at {x}, {y}, {z} (with {yaw}, {pitch})", loc)
+                    .replace("{name}", name);
     }
 
     // srt move
 
     public String getMovedLocationMessage(String name, Location loc) {
-        return getMessage("moved-location", "Moved location {name} to {world} at {x}, {y}, {z} (with {yaw}, {pitch})")
-                    .replace("{name}", name).replace("{world}", loc.getWorld().getName())
-                    .replace("{x}", String.format("%5.2f", loc.getX())).replace("{y}", String.format("%5.2f", loc.getY()))
-                    .replace("{z}", String.format("%5.2f", loc.getZ()))
-                    .replace("{yaw}", String.format("%5.2f", loc.getYaw())).replace("{pitch}", String.format("%5.2f", loc.getPitch()));
+        return getLocationMessage("moved-location", "Moved location {name} to {world} at {x}, {y}, {z} (with {yaw}, {pitch})", loc)
+                    .replace("{name}", name);
     }
 
     // srt list
@@ -83,21 +74,15 @@ public class Messages extends CustomConfigHandler {
     }
 
     public String getListItemMessage(String name, Location loc) {
-        return getMessage("list-item", "{name}  in {world} at {x}, {y}, {z} (with {yaw}, {pitch})")
-                    .replace("{name}", name).replace("{world}", loc.getWorld().getName())
-                    .replace("{x}", String.format("%5.2f", loc.getX())).replace("{y}", String.format("%5.2f", loc.getY()))
-                    .replace("{z}", String.format("%5.2f", loc.getZ()))
-                    .replace("{yaw}", String.format("%5.2f", loc.getYaw())).replace("{pitch}", String.format("%5.2f", loc.getPitch()));
+        return getLocationMessage("list-item", "{name}  in {world} at {x}, {y}, {z} (with {yaw}, {pitch})", loc)
+                    .replace("{name}", name);
     }
 
     // srt use
 
     public String getTeleportingMessage(String name, Location loc) {
-        return getMessage("teleporting", "Teleporting to random location {name} in {world} at {x}, {y}, {z} (with {yaw}, {pitch})")
-                    .replace("{name}", name).replace("{world}", loc.getWorld().getName())
-                    .replace("{x}", String.format("%5.2f", loc.getX())).replace("{y}", String.format("%5.2f", loc.getY()))
-                    .replace("{z}", String.format("%5.2f", loc.getZ()))
-                    .replace("{yaw}", String.format("%5.2f", loc.getYaw())).replace("{pitch}", String.format("%5.2f", loc.getPitch()));
+        return getLocationMessage("teleporting", "Teleporting to random location {name} in {world} at {x}, {y}, {z} (with {yaw}, {pitch})", loc)
+                    .replace("{name}", name);
     }
 
     // actvation
@@ -112,10 +97,6 @@ public class Messages extends CustomConfigHandler {
 
     public String getMarkedAsActivationMessage() {
         return getMessage("marked-as-activation-block", "This block was marked as an activation block!");
-    }
-
-    public String getMessage(String path, String def) {
-        return ChatColor.translateAlternateColorCodes('&', getConfig().getString(path, def));
     }
 
     public String getStartedWaitingDelActivateMessage() {
@@ -144,11 +125,19 @@ public class Messages extends CustomConfigHandler {
     }
 
     public String getActivationListItemMessage(Location loc) {
-        return getMessage("activation-list-item", "{world} at {x}, {y}, {z} (with {yaw}, {pitch})")
+        return getLocationMessage("activation-list-item", "{world} at {x}, {y}, {z} (with {yaw}, {pitch})", loc);
+    }
+
+    public String getLocationMessage(String path, String def, Location loc) {
+        return getMessage(path, def)
                     .replace("{world}", loc.getWorld().getName())
                     .replace("{x}", String.format("%5.2f", loc.getX())).replace("{y}", String.format("%5.2f", loc.getY()))
                     .replace("{z}", String.format("%5.2f", loc.getZ()))
                     .replace("{yaw}", String.format("%5.2f", loc.getYaw())).replace("{pitch}", String.format("%5.2f", loc.getPitch()));
+    }
+
+    public String getMessage(String path, String def) {
+        return ChatColor.translateAlternateColorCodes('&', getConfig().getString(path, def));
     }
 
 }
