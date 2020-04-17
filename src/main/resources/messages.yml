@@ -1,0 +1,10 @@
+unrecognized-subcommand: "{sub} is not a recognized subcommand!"
+need-a-player: "Only a player can do this!"
+
+# /srp addloc messages
+location-exists: "Location {name} already exists, use '/srp moveloc <name>' to move it here"
+added-location: "Added location {name} in {world} at {x}, {y}, {z} (with {yaw}, {pitch})"
+
+# /srp removeloc message
+location-does-not-exist: "Location {name} does not exist"
+removed-location: "Removed location {name} from {world} at {x}, {y}, {z} (with {yaw}, {pitch})"

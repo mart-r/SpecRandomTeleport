@@ -1,0 +1,28 @@
+# pHD
+#
+# See http://wiki.bukkit.org/Plugin_YAML for a complete list of requirements and options.
+
+name: ${project.name}
+version: ${project.version}
+api-version: 1.13
+main: ${project.groupId}.${project.artifactId}.${project.name}
+description: ${project.description}
+authors: [drives_a_ford]
+
+commands:
+  specrandomteleport:
+    description: The main SpecRandomTeleport command
+    usage: /<command> <subcommand> <args>
+    permission: srt.commands.main
+    aliases: [srt]
+
+permissions:
+  srt.commands.main:
+    description: Allow using the command
+    default: op
+  srt.commands.addloc:
+    description: Allow adding location to the pool
+    default: op
+  srt.commands.removeloc:
+    description: Allow removing location from the pool
+    default: op
