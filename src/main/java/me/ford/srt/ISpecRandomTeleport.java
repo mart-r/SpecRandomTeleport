@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.InputStream;
 import java.util.logging.Logger;
 
+import org.bukkit.configuration.file.FileConfiguration;
+
 import me.ford.srt.config.Messages;
 import me.ford.srt.config.Settings;
 import me.ford.srt.locations.ActivationLocationProvider;
@@ -14,6 +16,8 @@ public interface ISpecRandomTeleport {
     // implemented by JavaPlugin
 
     public Logger getLogger();
+
+    public FileConfiguration getConfig();
 
     public File getDataFolder();
 
