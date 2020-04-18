@@ -10,7 +10,7 @@ import me.ford.srt.locations.ActivationLocationProvider;
 import me.ford.srt.locations.SimplyActivationLocationProvider;
 import me.ford.srt.locations.LocationProvider;
 
-public class SpecRandomTeleport extends JavaPlugin {
+public class SpecRandomTeleport extends JavaPlugin implements ISpecRandomTeleport {
     private Messages messages;
     private Settings settings;
     private LocationProvider locationProvider;
