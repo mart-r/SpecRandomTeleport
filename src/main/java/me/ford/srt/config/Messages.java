@@ -8,6 +8,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.Location;
 
 import me.ford.srt.ISpecRandomTeleport;
+import me.ford.srt.utils.FormatUtils;
 
 public class Messages extends CustomConfigHandler {
     private static final String NAME = "messages.yml";
@@ -131,9 +132,9 @@ public class Messages extends CustomConfigHandler {
     public String getLocationMessage(String path, String def, Location loc) {
         return getMessage(path, def)
                     .replace("{world}", loc.getWorld().getName())
-                    .replace("{x}", String.format("%5.2f", loc.getX())).replace("{y}", String.format("%5.2f", loc.getY()))
-                    .replace("{z}", String.format("%5.2f", loc.getZ()))
-                    .replace("{yaw}", String.format("%5.2f", loc.getYaw())).replace("{pitch}", String.format("%5.2f", loc.getPitch()));
+                    .replace("{x}", FormatUtils.formatDouble(loc.getX())).replace("{y}", FormatUtils.formatDouble(loc.getY()))
+                    .replace("{z}", FormatUtils.formatDouble(loc.getZ()))
+                    .replace("{yaw}", FormatUtils.formatDouble(loc.getYaw())).replace("{pitch}", FormatUtils.formatDouble(loc.getPitch()));
     }
 
     public String getMessage(String path, String def) {
