@@ -123,4 +123,8 @@ public class MockSpecRandomTeleport implements ISpecRandomTeleport {
         return activationProvider;
     }
 
+    public void disable() {
+        // if something needs to be torn down
+    }
+
 }
