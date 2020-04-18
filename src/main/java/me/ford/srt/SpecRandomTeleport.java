@@ -33,7 +33,7 @@ public class SpecRandomTeleport extends SchedulingSpecRandomTeleport {
         getCommand("specrandomteleport").setExecutor(new SRTCommand(this));
 
         if (settings.useMetrics()) {
-            new Metrics(this, 7215);
+            new Metrics(this, 7216);
         }
     }
 
