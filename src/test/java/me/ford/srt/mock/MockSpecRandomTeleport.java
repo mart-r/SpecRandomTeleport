@@ -2,8 +2,10 @@ package me.ford.srt.mock;
 
 import java.io.File;
 import java.io.InputStream;
+import java.lang.reflect.Field;
 import java.util.logging.Logger;
 
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.scheduler.BukkitTask;
@@ -32,7 +34,8 @@ public class MockSpecRandomTeleport implements ISpecRandomTeleport {
     private final ActivationLocationProvider activationProvider;
 
     public MockSpecRandomTeleport() {
-        scheduler = new MockScheduler();;
+        scheduler = new MockScheduler();
+        ;
         settings = new Settings(this);
         messages = new Messages(this);
         config = YamlConfiguration.loadConfiguration(new File(getDataFolder(), CONFIG_NAME));
@@ -44,6 +47,27 @@ public class MockSpecRandomTeleport implements ISpecRandomTeleport {
 
         locationProvider = new LocationProvider(this);
         activationProvider = new SimplyActivationLocationProvider(this, activationListener);
+
+        // reflection
+        setupMockServer();
+    }
+
+    private void setupMockServer() {
+        Class<Bukkit> bukkit = Bukkit.class;
+        Field serverField;
+        try {
+            serverField = bukkit.getDeclaredField("server");
+        } catch (NoSuchFieldException | SecurityException e) {
+            e.printStackTrace();
+            return;
+        }
+        serverField.setAccessible(true);
+        try {
+            serverField.set(null, MockServer.getInstance());
+        } catch (IllegalArgumentException | IllegalAccessException e) {
+            e.printStackTrace();
+            return;
+        }
     }
 
     @Override
