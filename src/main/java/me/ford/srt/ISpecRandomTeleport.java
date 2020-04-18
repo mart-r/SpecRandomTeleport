@@ -21,6 +21,20 @@ public interface ISpecRandomTeleport {
 
     public InputStream getResource(String name);
 
+    // scheduling
+
+    public void runTask(Runnable runnable);
+
+    public void runTaskLater(Runnable runnable, long delay);
+
+    public void runTaskTimer(Runnable runnable, long delay, long period);
+
+    public void runTaskAsynchronously(Runnable runnable);
+
+    public void runTaskLaterAsynchronously(Runnable runnable, long delay);
+
+    public void runTaskTimerAsynchronously(Runnable runnable, long delay, long period);
+
     // custom
 
     public Settings getSettings();

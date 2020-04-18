@@ -1,7 +1,5 @@
 package me.ford.srt;
 
-import org.bukkit.plugin.java.JavaPlugin;
-
 import me.ford.srt.commands.SRTCommand;
 import me.ford.srt.config.Messages;
 import me.ford.srt.config.Settings;
@@ -10,7 +8,7 @@ import me.ford.srt.locations.ActivationLocationProvider;
 import me.ford.srt.locations.SimplyActivationLocationProvider;
 import me.ford.srt.locations.LocationProvider;
 
-public class SpecRandomTeleport extends JavaPlugin implements ISpecRandomTeleport {
+public class SpecRandomTeleport extends SchedulingSpecRandomTeleport {
     private Messages messages;
     private Settings settings;
     private LocationProvider locationProvider;
