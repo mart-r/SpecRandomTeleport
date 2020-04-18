@@ -52,7 +52,7 @@ public abstract class ParentCommand implements TabExecutor {
         }
     }
 
-    private String getUsage(CommandSender sender) {
+    String getUsage(CommandSender sender) {
         List<String> msgs = new ArrayList<>();
         String header = getUsage();
         for (SubCommand cmd : subCommands.values()) {
