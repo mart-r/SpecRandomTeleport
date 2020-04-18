@@ -12,18 +12,18 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 
-import me.ford.srt.SpecRandomTeleport;
+import me.ford.srt.ISpecRandomTeleport;
 
 public class ActivationListener implements Listener {
     private final Set<UUID> activateNext = new HashSet<>();
     private final Set<UUID> deleteNext = new HashSet<>();
-    private final SpecRandomTeleport srt;
+    private final ISpecRandomTeleport srt;
     private ActivationLocationProvider activationProvider = null;
     private LocationProvider locationProvider = null;
 
-    public ActivationListener(SpecRandomTeleport srt) {
+    public ActivationListener(ISpecRandomTeleport srt) {
         this.srt = srt;
-        srt.getServer().getScheduler().runTaskAsynchronously(srt, ()-> lazyInit());
+        srt.runTask(()-> lazyInit());
     }
 
     public void addWaitingToActivate(Player player) {
