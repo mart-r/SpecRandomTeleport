@@ -53,8 +53,7 @@ public class ActivationListener implements Listener {
             player.sendMessage(srt.getMessages().getUnsuitableBlockMessage());
             return;
         }
-        String msg = srt.getMessages().getMarkedAsActivationMessage();
-        if (!msg.isEmpty()) player.sendMessage(msg);
+        player.sendMessage(srt.getMessages().getMarkedAsActivationMessage());
         event.setCancelled(true);
     }
     
@@ -84,7 +83,8 @@ public class ActivationListener implements Listener {
         String locName = locationProvider.getRandomLocationName();
         Location loc = locationProvider.getLocation(locName);
         Player player = event.getPlayer();
-        player.sendMessage(srt.getMessages().getTeleportingMessage(locName, loc));
+        String msg = srt.getMessages().getTeleportingMessage(locName, loc);
+        if (!msg.isEmpty()) player.sendMessage(msg);
         player.teleport(loc);
     }
 
