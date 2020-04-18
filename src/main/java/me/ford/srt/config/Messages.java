@@ -7,12 +7,12 @@ import java.util.Map.Entry;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 
-import me.ford.srt.SpecRandomTeleport;
+import me.ford.srt.ISpecRandomTeleport;
 
 public class Messages extends CustomConfigHandler {
     private static final String NAME = "messages.yml";
 
-    public Messages(SpecRandomTeleport srt) {
+    public Messages(ISpecRandomTeleport srt) {
         super(srt, NAME);
     }
 

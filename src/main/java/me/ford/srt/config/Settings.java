@@ -1,11 +1,11 @@
 package me.ford.srt.config;
 
-import me.ford.srt.SpecRandomTeleport;
+import me.ford.srt.ISpecRandomTeleport;
 
 public class Settings {
-    private final SpecRandomTeleport srt;
+    private final ISpecRandomTeleport srt;
 
-    public Settings(SpecRandomTeleport srt) {
+    public Settings(ISpecRandomTeleport srt) {
         this.srt = srt;
     }
 
