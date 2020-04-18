@@ -13,4 +13,8 @@ public class Settings {
         return srt.getConfig().getBoolean("debug", false);
     }
 
+    public boolean useMetrics() {
+        return srt.getConfig().getBoolean("use-metrics", true);
+    }
+
 }

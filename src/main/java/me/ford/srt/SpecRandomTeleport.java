@@ -1,5 +1,7 @@
 package me.ford.srt;
 
+import org.bstats.bukkit.Metrics;
+
 import me.ford.srt.commands.SRTCommand;
 import me.ford.srt.config.Messages;
 import me.ford.srt.config.Settings;
@@ -30,6 +32,9 @@ public class SpecRandomTeleport extends SchedulingSpecRandomTeleport {
 
         getCommand("specrandomteleport").setExecutor(new SRTCommand(this));
 
+        if (settings.useMetrics()) {
+            new Metrics(this, 7215);
+        }
     }
 
     public Settings getSettings() {

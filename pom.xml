@@ -37,7 +37,7 @@
     <dependency>
         <groupId>org.bstats</groupId>
         <artifactId>bstats-bukkit</artifactId>
-        <version>1.5</version>
+        <version>1.7</version>
         <scope>compile</scope>
     </dependency>
   
@@ -89,7 +89,7 @@
           <relocation>
             <pattern>org.bstats</pattern>
             <!-- Replace this with your package! -->
-            <shadedPattern>me.ford.metrics</shadedPattern>
+            <shadedPattern>me.ford.srt.metrics</shadedPattern>
           </relocation>
         </relocations>
       </configuration>
