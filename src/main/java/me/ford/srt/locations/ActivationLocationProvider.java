@@ -4,8 +4,6 @@ import java.util.List;
 
 import org.bukkit.Location;
 
-import me.ford.srt.ActivationListener;
-
 public interface ActivationLocationProvider {
 
     public boolean isActivationLocation(Location loc);

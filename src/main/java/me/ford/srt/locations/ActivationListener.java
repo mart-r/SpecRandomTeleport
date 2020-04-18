@@ -1,4 +1,4 @@
-package me.ford.srt;
+package me.ford.srt.locations;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -12,8 +12,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 
-import me.ford.srt.locations.ActivationLocationProvider;
-import me.ford.srt.locations.LocationProvider;
+import me.ford.srt.SpecRandomTeleport;
 
 public class ActivationListener implements Listener {
     private final Set<UUID> activateNext = new HashSet<>();

@@ -5,6 +5,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import me.ford.srt.commands.SRTCommand;
 import me.ford.srt.config.Messages;
 import me.ford.srt.config.Settings;
+import me.ford.srt.locations.ActivationListener;
 import me.ford.srt.locations.ActivationLocationProvider;
 import me.ford.srt.locations.SimplyActivationLocationProvider;
 import me.ford.srt.locations.LocationProvider;

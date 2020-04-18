@@ -7,7 +7,6 @@ import java.util.Map.Entry;
 
 import org.bukkit.Location;
 
-import me.ford.srt.ActivationListener;
 import me.ford.srt.SpecRandomTeleport;
 
 public class SimplyActivationLocationProvider extends AbstractLocationProvider implements ActivationLocationProvider {
