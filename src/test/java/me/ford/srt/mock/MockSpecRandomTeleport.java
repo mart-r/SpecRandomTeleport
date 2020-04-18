@@ -124,7 +124,10 @@ public class MockSpecRandomTeleport implements ISpecRandomTeleport {
     }
 
     public void disable() {
-        // if something needs to be torn down
+        File file = locationProvider.getFile();
+        if (file.exists()) file.delete();
+        file = ((SimplyActivationLocationProvider) activationProvider).getFile();
+        if (file.exists()) file.delete();
     }
 
 }
