@@ -1,31 +1,32 @@
 package me.ford.srt;
 
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitTask;
 
 public abstract class SchedulingSpecRandomTeleport extends JavaPlugin implements ISpecRandomTeleport {
 
-    public void runTask(Runnable runnable) {
-        getServer().getScheduler().runTask(this, runnable);
+    public BukkitTask runTask(Runnable runnable) {
+        return getServer().getScheduler().runTask(this, runnable);
     }
 
-    public void runTaskLater(Runnable runnable, long delay) {
-        getServer().getScheduler().runTaskLater(this, runnable, delay);
+    public BukkitTask runTaskLater(Runnable runnable, long delay) {
+        return getServer().getScheduler().runTaskLater(this, runnable, delay);
     }
 
-    public void runTaskTimer(Runnable runnable, long delay, long period) {
-        getServer().getScheduler().runTaskTimer(this, runnable, delay, period);
+    public BukkitTask runTaskTimer(Runnable runnable, long delay, long period) {
+        return getServer().getScheduler().runTaskTimer(this, runnable, delay, period);
     }
 
-    public void runTaskAsynchronously(Runnable runnable) {
-        getServer().getScheduler().runTaskAsynchronously(this, runnable);
+    public BukkitTask runTaskAsynchronously(Runnable runnable) {
+        return getServer().getScheduler().runTaskAsynchronously(this, runnable);
     }
 
-    public void runTaskLaterAsynchronously(Runnable runnable, long delay) {
-        getServer().getScheduler().runTaskLaterAsynchronously(this, runnable, delay);
+    public BukkitTask runTaskLaterAsynchronously(Runnable runnable, long delay) {
+        return getServer().getScheduler().runTaskLaterAsynchronously(this, runnable, delay);
     }
 
-    public void runTaskTimerAsynchronously(Runnable runnable, long delay, long period) {
-        getServer().getScheduler().runTaskTimerAsynchronously(this, runnable, delay, period);
+    public BukkitTask runTaskTimerAsynchronously(Runnable runnable, long delay, long period) {
+        return getServer().getScheduler().runTaskTimerAsynchronously(this, runnable, delay, period);
     }
 
 }

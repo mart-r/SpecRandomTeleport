@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.util.logging.Logger;
 
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.scheduler.BukkitTask;
 
 import me.ford.srt.config.Messages;
 import me.ford.srt.config.Settings;
@@ -27,17 +28,17 @@ public interface ISpecRandomTeleport {
 
     // scheduling
 
-    public void runTask(Runnable runnable);
+    public BukkitTask runTask(Runnable runnable);
 
-    public void runTaskLater(Runnable runnable, long delay);
+    public BukkitTask runTaskLater(Runnable runnable, long delay);
 
-    public void runTaskTimer(Runnable runnable, long delay, long period);
+    public BukkitTask runTaskTimer(Runnable runnable, long delay, long period);
 
-    public void runTaskAsynchronously(Runnable runnable);
+    public BukkitTask runTaskAsynchronously(Runnable runnable);
 
-    public void runTaskLaterAsynchronously(Runnable runnable, long delay);
+    public BukkitTask runTaskLaterAsynchronously(Runnable runnable, long delay);
 
-    public void runTaskTimerAsynchronously(Runnable runnable, long delay, long period);
+    public BukkitTask runTaskTimerAsynchronously(Runnable runnable, long delay, long period);
 
     // custom
 
