@@ -7,7 +7,7 @@ import java.util.Map.Entry;
 
 import org.bukkit.Location;
 
-import me.ford.srt.SpecRandomTeleport;
+import me.ford.srt.ISpecRandomTeleport;
 
 public class SimplyActivationLocationProvider extends AbstractLocationProvider implements ActivationLocationProvider {
     private static final String NAME = "activators.yml";
@@ -15,7 +15,7 @@ public class SimplyActivationLocationProvider extends AbstractLocationProvider i
     private final Collection<Location> locations;
     private final ActivationListener listener;
 
-    public SimplyActivationLocationProvider(SpecRandomTeleport srt, ActivationListener listener) {
+    public SimplyActivationLocationProvider(ISpecRandomTeleport srt, ActivationListener listener) {
         super(srt, NAME);
         locations = super.locations.values();
         this.listener = listener;

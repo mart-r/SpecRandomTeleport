@@ -14,18 +14,19 @@ import org.bukkit.Bukkit;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.plugin.java.JavaPlugin;
+
+import me.ford.srt.ISpecRandomTeleport;
 
 /**
  * CustomConfig
  */
 public class CustomConfigHandler {
-    private final JavaPlugin plugin;
+    private final ISpecRandomTeleport plugin;
     private final String fileName;
     private FileConfiguration customConfig = null;
     private File customConfigFile = null;
 
-    public CustomConfigHandler(JavaPlugin plugin, String name) {
+    public CustomConfigHandler(ISpecRandomTeleport plugin, String name) {
         this.plugin = plugin;
         this.fileName = name;
         saveDefaultConfig();

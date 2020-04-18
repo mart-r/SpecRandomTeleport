@@ -9,15 +9,15 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import org.bukkit.Location;
 
-import me.ford.srt.SpecRandomTeleport;
+import me.ford.srt.ISpecRandomTeleport;
 import me.ford.srt.config.CustomConfigHandler;
 
 public abstract class AbstractLocationProvider extends CustomConfigHandler {
     protected final Map<String, Location> locations = new HashMap<>();
-    private final SpecRandomTeleport srt;
+    private final ISpecRandomTeleport srt;
     private final Random random = ThreadLocalRandom.current();
 
-    public AbstractLocationProvider(SpecRandomTeleport srt, String name) {
+    public AbstractLocationProvider(ISpecRandomTeleport srt, String name) {
         super(srt, name);
         this.srt = srt;
         loadCache();
