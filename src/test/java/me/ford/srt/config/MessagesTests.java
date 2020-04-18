@@ -24,7 +24,7 @@ public class MessagesTests {
     @Before
     public void setUp() {
         srt = new MockSpecRandomTeleport();
-        messages = new Messages(srt);
+        messages = srt.getMessages();
     }
 
     @After
