@@ -53,7 +53,8 @@ public class ActivationListener implements Listener {
             player.sendMessage(srt.getMessages().getUnsuitableBlockMessage());
             return;
         }
-        player.sendMessage(srt.getMessages().getMarkedAsActivationMessage());
+        String msg = srt.getMessages().getMarkedAsActivationMessage();
+        if (!msg.isEmpty()) player.sendMessage(msg);
         event.setCancelled(true);
     }
     
