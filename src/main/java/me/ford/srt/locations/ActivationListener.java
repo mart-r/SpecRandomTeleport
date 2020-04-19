@@ -80,10 +80,10 @@ public class ActivationListener implements Listener {
         Block block = event.getClickedBlock();
         if (event.getClickedBlock() == null) return;
         if (!activationProvider.isActivationLocation(block.getLocation())) return;
-        String locName = locationProvider.getRandomLocationName();
-        Location loc = locationProvider.getLocation(locName);
+        NamedLocation nLoc = locationProvider.getRandomLocation();
+        Location loc = nLoc.getLocation();
         Player player = event.getPlayer();
-        String msg = srt.getMessages().getTeleportingMessage(locName, loc);
+        String msg = srt.getMessages().getTeleportingMessage(nLoc);
         if (!msg.isEmpty()) player.sendMessage(msg);
         player.teleport(loc);
     }

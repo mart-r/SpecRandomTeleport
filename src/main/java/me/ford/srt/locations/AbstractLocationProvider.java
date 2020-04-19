@@ -76,14 +76,14 @@ public abstract class AbstractLocationProvider extends CustomConfigHandler {
         return new HashSet<>(locations.keySet());
     }
 
-    public String getRandomLocationName() {
+    public NamedLocation getRandomLocation() {
         if (locations.isEmpty()) {
             return null;
         }
         int amount = locations.size();
         int nr = random.nextInt(amount);
-        for (String name : locations.keySet()) { // iterating because the Collection is not ordered
-            if (nr == 0) return name;
+        for (NamedLocation loc : locations.values()) { // iterating because the Collection is not ordered
+            if (nr == 0) return loc;
             nr--;
         }
         throw new RuntimeException("Got random " + nr + "/" + amount + " and was unable to find the corresponding location - this really shouldn't be happening!");

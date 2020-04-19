@@ -86,6 +86,10 @@ public class Messages extends CustomConfigHandler {
 
     // srt use
 
+    public String getTeleportingMessage(NamedLocation loc) {
+        return getTeleportingMessage(loc.getName(), loc.getLocation());
+    }
+
     public String getTeleportingMessage(String name, Location loc) {
         return getLocationMessage("teleporting", "Teleporting to random location {name} in {world} at {x}, {y}, {z} (with {yaw}, {pitch})", loc)
                     .replace("{name}", name);

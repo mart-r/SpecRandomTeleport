@@ -36,7 +36,7 @@ public class LocationProviderTests {
     @Test
     public void saveLoad() {
         Assert.assertTrue(provider.getLocations().isEmpty());
-        Assert.assertNull(provider.getRandomLocationName());
+        Assert.assertNull(provider.getRandomLocation());
         
         String locName = "ThisSpawnLocation";
         String worldName = "RandomWorldName123";
@@ -51,8 +51,8 @@ public class LocationProviderTests {
         Assert.assertTrue(provider.getLocations().size() == 1);
         Assert.assertTrue(provider.getNames().size() == 1);
         Assert.assertTrue(provider.getNames().contains(locName));
-        Assert.assertEquals(provider.getRandomLocationName(), locName);
-        Assert.assertEquals(loc, provider.getLocation(provider.getRandomLocationName()));
+        Assert.assertEquals(provider.getRandomLocation(), new NamedLocation(locName, loc));
+        Assert.assertEquals(provider.getRandomLocation().getLocation(), loc);
 
         // new instance
         provider = new LocationProvider(srt);
@@ -60,8 +60,8 @@ public class LocationProviderTests {
         Assert.assertTrue(provider.getLocations().size() == 1);
         Assert.assertTrue(provider.getNames().size() == 1);
         Assert.assertTrue(provider.getNames().contains(locName));
-        Assert.assertEquals(provider.getRandomLocationName(), locName);
-        Assert.assertEquals(loc, provider.getLocation(provider.getRandomLocationName()));
+        Assert.assertEquals(provider.getRandomLocation(), new NamedLocation(locName, loc));
+        Assert.assertEquals(provider.getRandomLocation().getLocation(), loc);
         
         String locName2 = "AnotherLocation";
         Location loc2 = new Location(world, x*y, x - z, y*y + x*z);
@@ -73,9 +73,11 @@ public class LocationProviderTests {
         Assert.assertTrue(provider.getNames().contains(locName2));
         Assert.assertTrue(provider.getLocations().values().contains(new NamedLocation(locName, loc)));
         Assert.assertTrue(provider.getLocations().values().contains(new NamedLocation(locName2, loc2)));
-        String rndName = provider.getRandomLocationName();
-        Assert.assertNotNull(rndName);
-        Assert.assertTrue(rndName.equals(locName) || rndName.equals(locName2));
+        NamedLocation rndLoc = provider.getRandomLocation();
+        Assert.assertNotNull(rndLoc);
+        Assert.assertTrue(rndLoc.getName().equals(locName) || rndLoc.getName().equals(locName2));
+        Assert.assertTrue(rndLoc.getLocation().equals(loc) || rndLoc.getLocation().equals(loc2));
+        Assert.assertTrue(rndLoc.equals(new NamedLocation(locName, loc)) || rndLoc.equals(new NamedLocation(locName2, loc2)));
     }
 
 }

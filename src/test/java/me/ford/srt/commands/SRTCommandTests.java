@@ -68,9 +68,9 @@ public class SRTCommandTests {
         Assert.assertEquals(locProv.getLocations().get(locName), new NamedLocation(locName, loc));
         Assert.assertTrue(locProv.getLocations().containsValue(new NamedLocation(locName, loc)));
         Assert.assertTrue(locProv.getLocations().size() == 1);
-        Assert.assertEquals(locProv.getRandomLocationName(), locName);
+        Assert.assertEquals(locProv.getRandomLocation(), new NamedLocation(locName, loc));
         Assert.assertEquals(locProv.getLocation(locName), loc);
-        Assert.assertEquals(locProv.getLocation(locProv.getRandomLocationName()), loc);
+        Assert.assertEquals(locProv.getRandomLocation().getLocation(), loc);
     }
 
     @Test
