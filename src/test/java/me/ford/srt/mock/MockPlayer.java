@@ -743,8 +743,8 @@ public class MockPlayer extends MockCommandSender implements Player {
 
     @Override
     public boolean teleport(Location location) {
-        // TODO Auto-generated method stub
-        return false;
+        setLocation(location);
+        return true;
     }
 
     @Override

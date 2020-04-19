@@ -1,5 +1,6 @@
 unrecognized-subcommand: "{sub} is not a recognized subcommand!"
 need-a-player: "Only a player can do this!"
+no-locations-set: "There are no locations provided by the plugin! Set some locations or contact an admin for them to do so!"
 
 # /srp addloc messages
 location-exists: "Location {name} already exists, use '/srp moveloc <name>' to move it here"

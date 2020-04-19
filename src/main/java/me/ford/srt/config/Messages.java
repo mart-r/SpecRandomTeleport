@@ -29,6 +29,10 @@ public class Messages extends CustomConfigHandler {
         return getMessage("need-a-player", "Only a player can do this!");
     }
 
+    public String getNoLocationsSetMessage() {
+        return getMessage("no-locations-set", "There are no locations provided by the plugin! Set some locations or contact an admin for them to do so!");
+    }
+
     // srt add
 
     public String getLocationExistsMessage(String name) {

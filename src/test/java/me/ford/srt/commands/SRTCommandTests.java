@@ -94,6 +94,25 @@ public class SRTCommandTests {
         Assert.assertTrue(locProv.getLocations().size() == 0);
     }
 
+    @Test
+    public void useTests() {
+        MockPlayer player = new MockPlayer("USE_Pl4y3r");
+        
+        String worldName = "someWorld_us3";
+        MockWorld world = new MockWorld(worldName);
+        Location loc1 = new Location(world, 35.99, -4.9, +33.21);
+        Location loc2 = new Location(world, -444.124, 125125, 42412.11);
+
+        assertCommand(player, "use", messages.getNoLocationsSetMessage());
+
+        String locName = "R4nd0mnam3";
+        player.setLocation(loc1);
+        srt.getLocationProvider().setLocation(locName, loc2);
+        
+        assertCommand(player, "use", messages.getTeleportingMessage(locName, loc2));
+        Assert.assertEquals(loc2, player.getLocation());
+    }
+
     private void assertCommand(MockCommandSender sender, String args, String expected) {
         sender.setExpectedMessage(expected);
         String[] argArray = args.split(" ");
