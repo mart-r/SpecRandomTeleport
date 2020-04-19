@@ -18,7 +18,7 @@ public class SRTCommand extends ParentCommand {
         addSubCommand("addloc", new AddLocationSub(srt.getLocationProvider(), srt.getMessages()));
         addSubCommand("removeloc", new RemoveLocationSub(srt.getLocationProvider(), srt.getMessages()));
         addSubCommand("moveloc", new MoveLocationSub(srt.getLocationProvider(), srt.getMessages()));
-        addSubCommand("list", new ListLocationsSub(srt.getSettings(), srt.getLocationProvider(), srt.getMessages()));
+        addSubCommand("list", new ListLocationsSub(srt.getLocationProvider(), srt.getMessages()));
         addSubCommand("use", new UseSub(srt.getLocationProvider(), srt.getMessages()));
         addSubCommand("addactviation", new AddActivationSub(srt.getActivationLocationProvider(), srt.getMessages()));
         addSubCommand("removeactivation",

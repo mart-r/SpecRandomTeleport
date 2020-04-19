@@ -68,10 +68,6 @@ public class Messages extends CustomConfigHandler {
 
     // srt list
 
-    public String getNoWorldMessage() {
-        return getMessage("per-world-warning", "It's possible locations with the same name exist in other worlds and are not shown here");
-    }
-
     public String getListMessage(List<NamedLocation> locs) {
         StringBuilder builder = new StringBuilder(getListHeaderMessage(locs.size()));
         for (NamedLocation loc : locs) {

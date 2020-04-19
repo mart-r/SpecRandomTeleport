@@ -16,7 +16,6 @@ moved-location: "Moved location {name} to {world} at {x}, {y}, {z} (with {yaw}, 
 # /srp list messages
 list-header: "All locations ({amount}):"
 list-item: "{name} in {world} at {x}, {y}, {z} (with {yaw}, {pitch})"
-per-world-warning: "It's possible locations with the same name exist in other worlds and are not shown here"
 
 # /srtp use messages
 teleporting: "Teleporting to random location {name} in {world} at {x}, {y}, {z} (with {yaw}, {pitch})"
