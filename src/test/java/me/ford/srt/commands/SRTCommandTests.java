@@ -1,5 +1,8 @@
 package me.ford.srt.commands;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.bukkit.Location;
 import org.junit.After;
 import org.junit.Assert;
@@ -59,7 +62,7 @@ public class SRTCommandTests extends MessageTestsBase {
 
         String locName = getRandomName("loc");
         String worldName = getRandomName("world");
-        Location loc = new Location(new MockWorld(worldName), 33.1, 55.1, -555.11);
+        Location loc = getRandomLocation(new MockWorld(worldName));
         player.setLocation(loc);
         assertCommand(player, "addloc " + locName, messages.getAddedLocationMessage(locName, loc));
 
@@ -82,7 +85,7 @@ public class SRTCommandTests extends MessageTestsBase {
 
         String locName = getRandomName("loc");
         String worldName = getRandomName("world");
-        Location loc = new Location(new MockWorld(worldName), 33.1, 55.1, -555.11);
+        Location loc = getRandomLocation(new MockWorld(worldName));
         ComplexLocationProvider locProv = srt.getLocationProvider();
         locProv.setLocation(locName, loc);
 
@@ -98,27 +101,172 @@ public class SRTCommandTests extends MessageTestsBase {
     @Test
     public void useTests() {
         MockPlayer player = new MockPlayer(getRandomName("player"));
-        
+
         String worldName = getRandomName("world");
         MockWorld world = new MockWorld(worldName);
-        Location loc1 = new Location(world, 35.99, -4.9, +33.21);
-        Location loc2 = new Location(world, -444.124, 125125, 42412.11);
+        Location loc1 = getRandomLocation(world);
+        Location loc2 = getRandomLocation(world);
 
         assertCommand(player, "use", messages.getNoLocationsSetMessage());
 
         String locName = getRandomName("loc");
         player.setLocation(loc1);
         srt.getLocationProvider().setLocation(locName, loc2);
-        
+
         assertCommand(player, "use", messages.getTeleportingMessage(locName, loc2));
         Assert.assertEquals(loc2, player.getLocation());
+    }
+
+    @Test
+    public void listAllConsole() {
+        String worldName = getRandomName("world");
+        MockWorld world = new MockWorld(worldName);
+        Location loc1 = getRandomLocation(world);
+        Location loc2 = getRandomLocation(world);
+        List<NamedLocation> locs = new ArrayList<>();
+        // need to preserver order
+        locs.add(new NamedLocation("loc2", loc1));
+        locs.add(new NamedLocation("loc1", loc2));
+        for (NamedLocation loc : locs) {
+            srt.getLocationProvider().setLocation(loc.getName(), loc.getLocation());
+        }
+        String msg = messages.getListMessage(locs);
+        assertCommand(sender, "list", msg);
+    }
+
+    @Test
+    public void listAllConsoleMultiworld() {
+        String worldName = "world1";
+        MockWorld world1 = new MockWorld(worldName);
+
+        MockWorld world2 = new MockWorld("world2");
+        Location loc1 = getRandomLocation(world1);
+        Location loc2 = getRandomLocation(world2);
+        List<NamedLocation> locs = new ArrayList<>();
+        // need to preserver order
+        locs.add(new NamedLocation("loc1", loc1));
+        locs.add(new NamedLocation("loc2", loc2));
+        // since in the implementation, the worlds get in the middle and the order can
+        // change
+        // with the current setup, will need to iterate backwards over the locations to
+        // add them in such a way where the order in both lists stays the same
+        // iterating backwards so as to preserver order
+        for (int i = locs.size() - 1; i >= 0; i--) {
+            NamedLocation loc = locs.get(i);
+            srt.getLocationProvider().setLocation(loc.getName(), loc.getLocation());
+        }
+        String msg = messages.getListMessage(locs);
+        assertCommand(sender, "list", msg);
+    }
+
+    @Test
+    public void listSpecifcConsoleMultiworld() {
+        String worldName = getRandomName("wrold");
+        MockWorld world1 = new MockWorld(worldName);
+
+        MockWorld world2 = new MockWorld(getRandomName("world"));
+        Location loc1 = getRandomLocation(world1);
+        NamedLocation named1 = new NamedLocation(getRandomName("named"), loc1);
+        Location loc2 = getRandomLocation(world2);
+        NamedLocation named2 = new NamedLocation(getRandomName("named"), loc2);
+
+        srt.getLocationProvider().setLocation(named1.getName(), loc1);
+        srt.getLocationProvider().setLocation(named2.getName(), loc2);
+
+        List<NamedLocation> locs = new ArrayList<>();
+        locs.add(named1);
+
+        // world1
+        String msg = messages.getListMessage(locs);
+        assertCommand(sender, "list " + worldName, msg);
+
+        locs.clear();;
+        locs.add(named2);
+
+        // world 2
+        msg = messages.getListMessage(locs);
+        assertCommand(sender, "list " + world2.getName(), msg);
+    }
+
+    @Test
+    public void listPlayerWorldTest() {
+        String worldName = getRandomName("wrold");
+        MockWorld world1 = new MockWorld(worldName);
+
+        MockWorld world2 = new MockWorld(getRandomName("world"));
+        Location loc1 = getRandomLocation(world1);
+        NamedLocation named1 = new NamedLocation(getRandomName("named"), loc1);
+        Location loc2 = getRandomLocation(world2);
+        NamedLocation named2 = new NamedLocation(getRandomName("named"), loc2);
+
+        srt.getLocationProvider().setLocation(named1.getName(), loc1);
+        srt.getLocationProvider().setLocation(named2.getName(), loc2);
+
+        List<NamedLocation> locs = new ArrayList<>();
+        locs.add(named1);
+
+        
+        MockPlayer player = new MockPlayer(getRandomName("player"));
+        player.setLocation(getRandomLocation(world1));
+
+        // world1
+        String msg = messages.getListMessage(locs);
+        assertCommand(player, "list", msg);
+
+        // world1
+        msg = messages.getListMessage(locs);
+        assertCommand(player, "list " + worldName, msg);
+    }
+
+    @Test
+    public void playerTeleportList() {
+        String worldName = getRandomName("wrold");
+        MockWorld world1 = new MockWorld(worldName);
+
+        MockWorld world2 = new MockWorld(getRandomName("world"));
+        Location loc1 = getRandomLocation(world1);
+        NamedLocation named1 = new NamedLocation(getRandomName("named"), loc1);
+        Location loc2 = getRandomLocation(world2);
+        NamedLocation named2 = new NamedLocation(getRandomName("named"), loc2);
+
+        srt.getLocationProvider().setLocation(named1.getName(), loc1);
+        srt.getLocationProvider().setLocation(named2.getName(), loc2);
+
+        List<NamedLocation> locs = new ArrayList<>();
+        locs.add(named1);
+
+        
+        MockPlayer player = new MockPlayer(getRandomName("player"));
+        player.setLocation(getRandomLocation(world1));
+
+        // world1
+        String msg = messages.getListMessage(locs);
+        assertCommand(player, "list", msg);
+
+        // world1
+        msg = messages.getListMessage(locs);
+        assertCommand(player, "list " + worldName, msg);
+
+        // teleport player
+        player.setLocation(getRandomLocation(world2));
+        locs.clear();;
+        locs.add(named2);
+
+        // world2
+        msg = messages.getListMessage(locs);
+        assertCommand(player, "list", msg);
+
+        // world2
+        msg = messages.getListMessage(locs);
+        assertCommand(player, "list " + world2.getName(), msg);
     }
 
     private void assertCommand(MockCommandSender sender, String args, String expected) {
         sender.setExpectedMessage(expected);
         String[] argArray = args.split(" ");
         // fix "" providing an argument
-        if (argArray.length == 1 && argArray[0].isEmpty()) argArray = new String[] {};
+        if (argArray.length == 1 && argArray[0].isEmpty())
+            argArray = new String[] {};
         command.onCommand(sender, null, "srt", argArray); // assertion within
 
     }
