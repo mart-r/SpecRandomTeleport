@@ -40,6 +40,7 @@ public class DefaultMessagesTests extends MessagesTests {
     @Override
     public void tearDown() {
         super.tearDown();
+        testMessages.delete();
     }
 
 }
