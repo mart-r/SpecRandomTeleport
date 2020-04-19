@@ -13,7 +13,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import me.ford.srt.ISpecRandomTeleport;
 import me.ford.srt.config.CustomConfigHandler;
 
-public abstract class AbstractLocationProvider extends CustomConfigHandler {
+public abstract class AbstractLocationProvider extends CustomConfigHandler implements NamedLocationProvider {
     protected final Map<String, NamedLocation> locations = new HashMap<>();
     private final ISpecRandomTeleport srt;
     private final Random random = ThreadLocalRandom.current();
