@@ -27,17 +27,28 @@ public class LocationProviderTests {
     }
 
     @Test
-    public void methods() {
+    public void fileNameIsCorrect() {
         Assert.assertEquals("locations.yml", provider.getFileName());
+    }
+
+    @Test
+    public void fileIsCorrect() {
         Assert.assertEquals(new File(srt.getDataFolder(), "locations.yml"), provider.getFile());
+    }
+
+    @Test
+    public void configNotNull() {
         Assert.assertNotNull(provider.getConfig());
     }
 
     @Test
-    public void saveLoad() {
+    public void startsEmpty() {
         Assert.assertTrue(provider.getLocations().isEmpty());
         Assert.assertNull(provider.getRandomLocation());
-        
+    }
+
+    @Test
+    public void loadReturnsSame() {
         String locName = "ThisSpawnLocation";
         String worldName = "RandomWorldName123";
         MockWorld world = new MockWorld(worldName);
@@ -53,6 +64,19 @@ public class LocationProviderTests {
         Assert.assertTrue(provider.getNames().contains(locName));
         Assert.assertEquals(provider.getRandomLocation(), new NamedLocation(locName, loc));
         Assert.assertEquals(provider.getRandomLocation().getLocation(), loc);
+    }
+
+    @Test
+    public void newInstanceReturnsSame() {        
+        String locName = "ThisSpawnLocat22ion";
+        String worldName = "RandomWorld312Name123";
+        MockWorld world = new MockWorld(worldName);
+        double x = -10449944.22;
+        double y = 42141212;
+        double z = -34412;
+        Location loc = new Location(world, x, y, z);
+
+        provider.setLocation(locName, loc);
 
         // new instance
         provider = new LocationProvider(srt);
@@ -62,8 +86,22 @@ public class LocationProviderTests {
         Assert.assertTrue(provider.getNames().contains(locName));
         Assert.assertEquals(provider.getRandomLocation(), new NamedLocation(locName, loc));
         Assert.assertEquals(provider.getRandomLocation().getLocation(), loc);
+    }
+
+    @Test
+    public void oneOfTwoIsSelected() {        
+        String locName = "ThisSpaw1nLocat222ion";
+        String worldName = "Random3World312Name123";
+        MockWorld world = new MockWorld(worldName);
+        double x = -33449944.22;
+        double y = 5541212;
+        double z = 64412;
+        Location loc = new Location(world, x, y, z);
+
+        provider.setLocation(locName, loc);
+
         
-        String locName2 = "AnotherLocation";
+        String locName2 = "AnotherLocadstion";
         Location loc2 = new Location(world, x*y, x - z, y*y + x*z);
         provider.setLocation(locName2, loc2);
 

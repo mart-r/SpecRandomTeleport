@@ -25,14 +25,17 @@ public class ActivationLocationProviderTests {
     }
 
     @Test
-    public void methods() {
+    public void locationsReturnList() {
         Assert.assertNotNull(provider.getAllLocations());
     }
 
     @Test
-    public void saveLoad() {
+    public void locationsStartEmpty() {
         Assert.assertTrue(provider.getAllLocations().size() == 0);
+    }
 
+    @Test
+    public void settingResultsInSame() {
         String worldName = "RandomWorldName313";
         MockWorld world = new MockWorld(worldName);
         double x = 1099444.22;
@@ -45,6 +48,18 @@ public class ActivationLocationProviderTests {
         Assert.assertTrue(provider.getAllLocations().size() == 1);
         Assert.assertEquals(loc, provider.getAllLocations().get(0));
         Assert.assertTrue(provider.isActivationLocation(loc));
+    }
+
+    @Test
+    public void newInstanceGetsSame() {
+        String worldName = "RandomW0rldName313";
+        MockWorld world = new MockWorld(worldName);
+        double x = -5533.22;
+        double y = 1411212;
+        double z = 933.221;
+        Location loc = new Location(world, x, y, z);
+
+        provider.markAsActivationLocation(loc);
 
         // new instance
         provider = new SimplyActivationLocationProvider(srt, provider.getListener());
