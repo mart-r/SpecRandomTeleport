@@ -9,4 +9,8 @@ public class LocationProvider extends AbstractLocationProvider {
         super(srt, NAME);
     }
 
+    public LocationProvider(ISpecRandomTeleport srt, String name) { // for per world file names
+        super(srt, name);
+    }
+
 }
