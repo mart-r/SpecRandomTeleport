@@ -8,6 +8,7 @@ import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
@@ -40,7 +41,7 @@ public class ActivationListener implements Listener {
         locationProvider = srt.getLocationProvider();
     }
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.LOW) // make this run before activation
     public void onSetActivation(PlayerInteractEvent event) {
         if (event.getHand() == EquipmentSlot.OFF_HAND)
             return;
@@ -61,7 +62,7 @@ public class ActivationListener implements Listener {
         event.setCancelled(true);
     }
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.LOW) // make this run before activation
     public void onDelActivation(PlayerInteractEvent event) {
         if (event.getHand() == EquipmentSlot.OFF_HAND)
             return;
