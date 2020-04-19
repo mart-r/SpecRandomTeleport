@@ -18,6 +18,10 @@ public class Messages extends CustomConfigHandler {
         super(srt, NAME);
     }
 
+    protected Messages(ISpecRandomTeleport srt, String name) { // for testing purposes
+        super(srt, name);
+    }
+
     // general
 
     public String getUnrecognizedCommandMessage(String sub) {
@@ -80,7 +84,7 @@ public class Messages extends CustomConfigHandler {
     }
 
     public String getListItemMessage(String name, Location loc) {
-        return getLocationMessage("list-item", "{name}  in {world} at {x}, {y}, {z} (with {yaw}, {pitch})", loc)
+        return getLocationMessage("list-item", "{name} in {world} at {x}, {y}, {z} (with {yaw}, {pitch})", loc)
                 .replace("{name}", name);
     }
 
