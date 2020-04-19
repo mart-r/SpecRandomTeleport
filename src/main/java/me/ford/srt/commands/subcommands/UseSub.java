@@ -10,6 +10,7 @@ import org.bukkit.entity.Player;
 import me.ford.srt.commands.SubCommand;
 import me.ford.srt.config.Messages;
 import me.ford.srt.locations.AbstractLocationProvider;
+import me.ford.srt.locations.NamedLocation;
 
 public class UseSub extends SubCommand {
     private static final String USAGE = "/srt use";
@@ -34,14 +35,14 @@ public class UseSub extends SubCommand {
             return true;
         }
         Player player = (Player) sender;
-        String locName = provider.getRandomLocationName();
-        if (locName == null) {
+        NamedLocation nLoc = provider.getRandomLocation();
+        if (nLoc == null) {
             String msg = "There are no locations provided by the plugin! Set some locations or contact an admin for them to do so!";
             sender.sendMessage(msg);
             return true;
         }
-        Location loc = provider.getLocation(locName);
-        sender.sendMessage(messages.getTeleportingMessage(locName, loc));
+        Location loc = nLoc.getLocation();
+        sender.sendMessage(messages.getTeleportingMessage(nLoc));
         player.teleport(loc);
         return true;
     }
