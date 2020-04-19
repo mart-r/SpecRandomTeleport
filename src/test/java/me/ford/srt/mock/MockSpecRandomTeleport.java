@@ -35,7 +35,6 @@ public class MockSpecRandomTeleport implements ISpecRandomTeleport {
 
     public MockSpecRandomTeleport() {
         scheduler = new MockScheduler();
-        ;
         settings = new Settings(this);
         messages = new Messages(this);
         config = YamlConfiguration.loadConfiguration(new File(getDataFolder(), CONFIG_NAME));
@@ -156,6 +155,10 @@ public class MockSpecRandomTeleport implements ISpecRandomTeleport {
         File file = activationProvider.getFile();
         if (file.exists()) {
             file.delete();
+        }
+        File configFile = new File(dataFolder, "config.yml");
+        if (configFile.exists()) {
+            configFile.delete();
         }
     }
 

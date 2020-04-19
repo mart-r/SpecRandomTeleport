@@ -102,4 +102,8 @@ public class ComplexLocationProvider implements PerWorldNamedLocationProvider {
         }
     }
 
+    public boolean isPerWorld() {
+        return usePerWorld;
+    }
+
 }
