@@ -6,6 +6,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import me.ford.srt.config.MessageTestsBase;
 import me.ford.srt.config.Messages;
 import me.ford.srt.locations.NamedLocation;
 import me.ford.srt.locations.perworld.ComplexLocationProvider;
@@ -14,7 +15,7 @@ import me.ford.srt.mock.MockPlayer;
 import me.ford.srt.mock.MockSpecRandomTeleport;
 import me.ford.srt.mock.MockWorld;
 
-public class SRTCommandTests {
+public class SRTCommandTests extends MessageTestsBase {
     private MockSpecRandomTeleport srt;
     private MockCommandSender sender;
     private Messages messages;
@@ -41,7 +42,7 @@ public class SRTCommandTests {
     @Test
     public void srtBaseTests() {
         assertCommand(sender, "", command.getUsage(sender));
-        String nonExistentSubCommand = "RANDOMTEXT";
+        String nonExistentSubCommand = getRandomName("NOEXIST");
         assertCommand(sender, nonExistentSubCommand, messages.getUnrecognizedCommandMessage(nonExistentSubCommand));
     }
 
@@ -53,11 +54,11 @@ public class SRTCommandTests {
 
     @Test
     public void srtAddLocPlayerTests() {
-        MockPlayer player = new MockPlayer("playerName4321");
+        MockPlayer player = new MockPlayer(getRandomName("player"));
         assertCommand(player, "addloc", command.getSubCommand("addloc").getUsage(player, new String[] {}));
 
-        String locName = "randomLocN4me";
-        String worldName = "rand0mW0rlnam3";
+        String locName = getRandomName("loc");
+        String worldName = getRandomName("world");
         Location loc = new Location(new MockWorld(worldName), 33.1, 55.1, -555.11);
         player.setLocation(loc);
         assertCommand(player, "addloc " + locName, messages.getAddedLocationMessage(locName, loc));
@@ -76,11 +77,11 @@ public class SRTCommandTests {
     @Test
     public void srtRemoveLocSenderTests() {
         assertCommand(sender, "removeloc", command.getSubCommand("removeloc").getUsage(sender, new String[] {}));
-        String nonExistent = "nonExistentLoc";
+        String nonExistent = getRandomName("noexists");
         assertCommand(sender, "removeloc " + nonExistent, messages.getLocationDoesNotExistMessage(nonExistent));
 
-        String locName = "randomLocN4me";
-        String worldName = "rand0mW0rlnam3";
+        String locName = getRandomName("loc");
+        String worldName = getRandomName("world");
         Location loc = new Location(new MockWorld(worldName), 33.1, 55.1, -555.11);
         ComplexLocationProvider locProv = srt.getLocationProvider();
         locProv.setLocation(locName, loc);
@@ -96,16 +97,16 @@ public class SRTCommandTests {
 
     @Test
     public void useTests() {
-        MockPlayer player = new MockPlayer("USE_Pl4y3r");
+        MockPlayer player = new MockPlayer(getRandomName("player"));
         
-        String worldName = "someWorld_us3";
+        String worldName = getRandomName("world");
         MockWorld world = new MockWorld(worldName);
         Location loc1 = new Location(world, 35.99, -4.9, +33.21);
         Location loc2 = new Location(world, -444.124, 125125, 42412.11);
 
         assertCommand(player, "use", messages.getNoLocationsSetMessage());
 
-        String locName = "R4nd0mnam3";
+        String locName = getRandomName("loc");
         player.setLocation(loc1);
         srt.getLocationProvider().setLocation(locName, loc2);
         
