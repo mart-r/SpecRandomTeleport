@@ -20,48 +20,48 @@ public class Messages extends CustomConfigHandler {
 
     // general
 
-	public String getUnrecognizedCommandMessage(String sub) {
-        return getMessage("unrecognized-subcommand", "{sub} is not a recognized subcommand!")
-                    .replace("{sub}", sub);
-	}
+    public String getUnrecognizedCommandMessage(String sub) {
+        return getMessage("unrecognized-subcommand", "{sub} is not a recognized subcommand!").replace("{sub}", sub);
+    }
 
     public String getNeedAPlayerMessage() {
         return getMessage("need-a-player", "Only a player can do this!");
     }
 
     public String getNoLocationsSetMessage() {
-        return getMessage("no-locations-set", "There are no locations provided by the plugin! Set some locations or contact an admin for them to do so!");
+        return getMessage("no-locations-set",
+                "There are no locations provided by the plugin! Set some locations or contact an admin for them to do so!");
     }
 
     // srt add
 
     public String getLocationExistsMessage(String name) {
-        return getMessage("location-exists", "Location {name} already exists, use '/srp moveloc <name>' to move it here")
-                    .replace("{name}", name);
+        return getMessage("location-exists",
+                "Location {name} already exists, use '/srp moveloc <name>' to move it here").replace("{name}", name);
     }
 
     public String getAddedLocationMessage(String name, Location loc) {
-        return getLocationMessage("added-location", "Added location {name} in {world} at {x}, {y}, {z} (with {yaw}, {pitch})", loc)
-                    .replace("{name}", name);
+        return getLocationMessage("added-location",
+                "Added location {name} in {world} at {x}, {y}, {z} (with {yaw}, {pitch})", loc).replace("{name}", name);
     }
 
     // srt remove
 
     public String getLocationDoesNotExistMessage(String name) {
-        return getMessage("location-does-not-exist", "Location {name} does not exist")
-                    .replace("{name}", name);
+        return getMessage("location-does-not-exist", "Location {name} does not exist").replace("{name}", name);
     }
 
     public String getRemovedLocationMessage(String name, Location loc) {
-        return getLocationMessage("removed-location", "Removed location {name} from {world} at {x}, {y}, {z} (with {yaw}, {pitch})", loc)
-                    .replace("{name}", name);
+        return getLocationMessage("removed-location",
+                "Removed location {name} from {world} at {x}, {y}, {z} (with {yaw}, {pitch})", loc).replace("{name}",
+                        name);
     }
 
     // srt move
 
     public String getMovedLocationMessage(String name, Location loc) {
-        return getLocationMessage("moved-location", "Moved location {name} to {world} at {x}, {y}, {z} (with {yaw}, {pitch})", loc)
-                    .replace("{name}", name);
+        return getLocationMessage("moved-location",
+                "Moved location {name} to {world} at {x}, {y}, {z} (with {yaw}, {pitch})", loc).replace("{name}", name);
     }
 
     // srt list
@@ -81,7 +81,7 @@ public class Messages extends CustomConfigHandler {
 
     public String getListItemMessage(String name, Location loc) {
         return getLocationMessage("list-item", "{name}  in {world} at {x}, {y}, {z} (with {yaw}, {pitch})", loc)
-                    .replace("{name}", name);
+                .replace("{name}", name);
     }
 
     public String getListItemMessage(NamedLocation loc) {
@@ -95,8 +95,9 @@ public class Messages extends CustomConfigHandler {
     }
 
     public String getTeleportingMessage(String name, Location loc) {
-        return getLocationMessage("teleporting", "Teleporting to random location {name} in {world} at {x}, {y}, {z} (with {yaw}, {pitch})", loc)
-                    .replace("{name}", name);
+        return getLocationMessage("teleporting",
+                "Teleporting to random location {name} in {world} at {x}, {y}, {z} (with {yaw}, {pitch})", loc)
+                        .replace("{name}", name);
     }
 
     // actvation
@@ -135,7 +136,8 @@ public class Messages extends CustomConfigHandler {
     }
 
     public String getActivationListHeaderMessage(int amount) {
-        return getMessage("activation-list-header", "All activations ({amount}):").replace("{amount}", String.valueOf(amount));
+        return getMessage("activation-list-header", "All activations ({amount}):").replace("{amount}",
+                String.valueOf(amount));
     }
 
     public String getActivationListItemMessage(Location loc) {
@@ -143,11 +145,12 @@ public class Messages extends CustomConfigHandler {
     }
 
     public String getLocationMessage(String path, String def, Location loc) {
-        return getMessage(path, def)
-                    .replace("{world}", loc.getWorld().getName())
-                    .replace("{x}", FormatUtils.formatDouble(loc.getX())).replace("{y}", FormatUtils.formatDouble(loc.getY()))
-                    .replace("{z}", FormatUtils.formatDouble(loc.getZ()))
-                    .replace("{yaw}", FormatUtils.formatDouble(loc.getYaw())).replace("{pitch}", FormatUtils.formatDouble(loc.getPitch()));
+        return getMessage(path, def).replace("{world}", loc.getWorld().getName())
+                .replace("{x}", FormatUtils.formatDouble(loc.getX()))
+                .replace("{y}", FormatUtils.formatDouble(loc.getY()))
+                .replace("{z}", FormatUtils.formatDouble(loc.getZ()))
+                .replace("{yaw}", FormatUtils.formatDouble(loc.getYaw()))
+                .replace("{pitch}", FormatUtils.formatDouble(loc.getPitch()));
     }
 
     public String getMessage(String path, String def) {

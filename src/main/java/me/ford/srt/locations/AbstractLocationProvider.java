@@ -30,13 +30,15 @@ public abstract class AbstractLocationProvider extends CustomConfigHandler {
             try {
                 loc = getConfig().getLocation(key);
             } catch (IllegalArgumentException e) { // for unknown world
-                srt.getLogger().warning("The location stored at " + key + "  in " + getFileName() + " conatins an invalid world and is thus not loadded!");
+                srt.getLogger().warning("The location stored at " + key + "  in " + getFileName()
+                        + " conatins an invalid world and is thus not loadded!");
                 continue;
             }
             locations.put(key, new NamedLocation(key, loc));
         }
         if (locations.isEmpty() && srt instanceof JavaPlugin) { // skip message during testing
-            srt.getLogger().warning("No locations stored in " + getFileName() + " - the plugin will not work properly!");
+            srt.getLogger()
+                    .warning("No locations stored in " + getFileName() + " - the plugin will not work properly!");
         }
     }
 
@@ -84,10 +86,12 @@ public abstract class AbstractLocationProvider extends CustomConfigHandler {
         int amount = locations.size();
         int nr = random.nextInt(amount);
         for (NamedLocation loc : locations.values()) { // iterating because the Collection is not ordered
-            if (nr == 0) return loc;
+            if (nr == 0)
+                return loc;
             nr--;
         }
-        throw new RuntimeException("Got random " + nr + "/" + amount + " and was unable to find the corresponding location - this really shouldn't be happening!");
+        throw new RuntimeException("Got random " + nr + "/" + amount
+                + " and was unable to find the corresponding location - this really shouldn't be happening!");
     }
 
 }

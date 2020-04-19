@@ -26,8 +26,10 @@ public class NamedLocation {
 
     @Override
     public boolean equals(Object other) {
-        if (other == this) return true;
-        if (!(other instanceof NamedLocation)) return false;
+        if (other == this)
+            return true;
+        if (!(other instanceof NamedLocation))
+            return false;
         NamedLocation o = (NamedLocation) other;
         return o.name.equals(name) && o.loc.equals(loc);
     }

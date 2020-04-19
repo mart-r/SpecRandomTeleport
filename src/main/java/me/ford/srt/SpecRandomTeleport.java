@@ -20,7 +20,7 @@ public class SpecRandomTeleport extends SchedulingSpecRandomTeleport {
     public void onEnable() {
         messages = new Messages(this);
         settings = new Settings(this);
-        
+
         saveDefaultConfig();
         messages.saveDefaultConfig();
 

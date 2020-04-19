@@ -23,7 +23,7 @@ public class ActivationListener implements Listener {
 
     public ActivationListener(ISpecRandomTeleport srt) {
         this.srt = srt;
-        srt.runTask(()-> lazyInit());
+        srt.runTask(() -> lazyInit());
     }
 
     public void addWaitingToActivate(Player player) {
@@ -33,19 +33,22 @@ public class ActivationListener implements Listener {
     public void addWaitingToDelActivate(Player player) {
         deleteNext.add(player.getUniqueId());
     }
-    
+
     private void lazyInit() {
         activationProvider = srt.getActivationLocationProvider();
         locationProvider = srt.getLocationProvider();
     }
-    
+
     @EventHandler
     public void onSetActivation(PlayerInteractEvent event) {
-        if (event.getHand() == EquipmentSlot.OFF_HAND) return;
+        if (event.getHand() == EquipmentSlot.OFF_HAND)
+            return;
         Block block = event.getClickedBlock();
-        if (event.getClickedBlock() == null) return;
+        if (event.getClickedBlock() == null)
+            return;
         Player player = event.getPlayer();
-        if (!activateNext.contains(player.getUniqueId())) return;
+        if (!activateNext.contains(player.getUniqueId()))
+            return;
         activateNext.remove(player.getUniqueId()); // removing here in case there's nothing to activate nearby
         try {
             activationProvider.markAsActivationLocation(block.getLocation());
@@ -56,14 +59,17 @@ public class ActivationListener implements Listener {
         player.sendMessage(srt.getMessages().getMarkedAsActivationMessage());
         event.setCancelled(true);
     }
-    
+
     @EventHandler
     public void onDelActivation(PlayerInteractEvent event) {
-        if (event.getHand() == EquipmentSlot.OFF_HAND) return;
+        if (event.getHand() == EquipmentSlot.OFF_HAND)
+            return;
         Block block = event.getClickedBlock();
-        if (event.getClickedBlock() == null) return;
+        if (event.getClickedBlock() == null)
+            return;
         Player player = event.getPlayer();
-        if (!deleteNext.contains(player.getUniqueId())) return;
+        if (!deleteNext.contains(player.getUniqueId()))
+            return;
         deleteNext.remove(player.getUniqueId()); // remove before in case there's nothing to actually delete
         if (!activationProvider.isActivationLocation(block.getLocation())) {
             player.sendMessage(srt.getMessages().getNotAnActivationBlockMessage());
@@ -76,15 +82,19 @@ public class ActivationListener implements Listener {
 
     @EventHandler(ignoreCancelled = true)
     public void onAcitvate(PlayerInteractEvent event) {
-        if (event.getHand() == EquipmentSlot.OFF_HAND) return;
+        if (event.getHand() == EquipmentSlot.OFF_HAND)
+            return;
         Block block = event.getClickedBlock();
-        if (event.getClickedBlock() == null) return;
-        if (!activationProvider.isActivationLocation(block.getLocation())) return;
+        if (event.getClickedBlock() == null)
+            return;
+        if (!activationProvider.isActivationLocation(block.getLocation()))
+            return;
         NamedLocation nLoc = locationProvider.getRandomLocation();
         Location loc = nLoc.getLocation();
         Player player = event.getPlayer();
         String msg = srt.getMessages().getTeleportingMessage(nLoc);
-        if (!msg.isEmpty()) player.sendMessage(msg);
+        if (!msg.isEmpty())
+            player.sendMessage(msg);
         player.teleport(loc);
     }
 
