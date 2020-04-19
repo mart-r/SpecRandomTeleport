@@ -102,6 +102,7 @@ public class ActivationListener implements Listener {
         if (!msg.isEmpty())
             player.sendMessage(msg);
         player.teleport(loc);
+        event.setCancelled(true);
     }
 
 }
