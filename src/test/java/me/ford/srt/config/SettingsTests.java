@@ -25,6 +25,7 @@ public class SettingsTests {
     @Test
     public void methods() {
         Assert.assertFalse(settings.isDebugEnabled());
+        Assert.assertTrue(settings.useMetrics());
     }
 
 }
