@@ -1,4 +1,4 @@
-package me.ford.srt.locations;
+package me.ford.srt.locations.perworld;
 
 import java.io.File;
 
@@ -8,6 +8,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import me.ford.srt.locations.NamedLocation;
 import me.ford.srt.mock.MockSpecRandomTeleport;
 import me.ford.srt.mock.MockWorld;
 

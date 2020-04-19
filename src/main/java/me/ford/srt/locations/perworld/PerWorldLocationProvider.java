@@ -1,4 +1,4 @@
-package me.ford.srt.locations;
+package me.ford.srt.locations.perworld;
 
 import java.io.File;
 import java.util.HashMap;
@@ -10,6 +10,8 @@ import org.bukkit.Location;
 import org.bukkit.World;
 
 import me.ford.srt.ISpecRandomTeleport;
+import me.ford.srt.locations.LocationProvider;
+import me.ford.srt.locations.NamedLocation;
 
 public class PerWorldLocationProvider implements PerWorldNamedLocationProvider {
     private static final String FILE_NAME_FORMAT = "locations_%s.yml";

@@ -1,4 +1,4 @@
-package me.ford.srt.locations;
+package me.ford.srt.locations.perworld;
 
 import java.io.File;
 import java.util.Map;
@@ -6,6 +6,8 @@ import java.util.Set;
 
 import org.bukkit.Location;
 import org.bukkit.World;
+
+import me.ford.srt.locations.NamedLocation;
 
 public interface PerWorldNamedLocationProvider {
 
