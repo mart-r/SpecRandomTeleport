@@ -2,7 +2,7 @@ package me.ford.srt.locations.perworld;
 
 import java.io.File;
 import java.util.HashSet;
-import java.util.Map;
+import java.util.List;
 import java.util.Set;
 
 import org.bukkit.Location;
@@ -65,7 +65,7 @@ public class ComplexLocationProvider implements PerWorldNamedLocationProvider {
     }
 
     @Override
-    public Map<String, NamedLocation> getLocations(World world) {
+    public List<NamedLocation> getLocations(World world) {
         if (usePerWorld) {
             return perWorldProvider.getLocations(world);
         } else {
