@@ -17,4 +17,8 @@ public class Settings {
         return srt.getConfig().getBoolean("use-metrics", true);
     }
 
+    public boolean usePerWorld() {
+        return srt.getConfig().getBoolean("use-per-world-locations", true);
+    }
+
 }

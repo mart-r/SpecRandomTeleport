@@ -1,1 +1,2 @@
 use-metrics: true
+use-per-world-locations: true

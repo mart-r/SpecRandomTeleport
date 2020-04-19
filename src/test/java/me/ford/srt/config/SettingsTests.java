@@ -26,6 +26,7 @@ public class SettingsTests {
     public void methods() {
         Assert.assertFalse(settings.isDebugEnabled());
         Assert.assertTrue(settings.useMetrics());
+        Assert.assertTrue(settings.usePerWorld());
     }
 
 }
