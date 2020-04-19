@@ -63,10 +63,7 @@ public class MessagesTests extends MessageTestsBase {
     public void activationListeItemUsesPlaceholder() {
         String worldName = getRandomName("world");
         MockWorld world = new MockWorld(worldName);
-        double x = 1.4;
-        double y = 4.4;
-        double z = -102.4;
-        Location loc = new Location(world, x, y, z);
+        Location loc = getRandomLocation(world);
 
         String msg = messages.getActivationListItemMessage(loc);
         Assert.assertFalse("Has placeholder:" + msg, hasPlaceHolder(msg));
