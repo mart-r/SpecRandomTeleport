@@ -7,7 +7,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
 
@@ -16,12 +19,30 @@ import me.ford.srt.locations.LocationProvider;
 import me.ford.srt.locations.NamedLocation;
 
 public class PerWorldLocationProvider implements PerWorldNamedLocationProvider {
+    private static final Pattern FILE_PATTERN = Pattern.compile("locations_(.*)\\.yml");
     private static final String FILE_NAME_FORMAT = "locations_%s.yml";
     private final ISpecRandomTeleport srt;
     private final Map<World, LocationProvider> worldProviders = new HashMap<>();
 
     public PerWorldLocationProvider(ISpecRandomTeleport srt) {
         this.srt = srt;
+        setupWorlds();
+    }
+
+    private void setupWorlds() {
+        for (String fileName : srt.getDataFolder().list()) {
+            Matcher matcher = FILE_PATTERN.matcher(fileName);
+            if (matcher.matches()) {
+                String worldName = matcher.group(1);
+                World world = Bukkit.getWorld(worldName);
+                if (world == null) {
+                    srt.getLogger().warning(String.format("Found world '%s' that corresponds to "
+                            + "the world '%s' but the world could not be found!", fileName, worldName));
+                    continue;
+                }
+                getOrCreateWorldProvider(world);
+            }
+        }
     }
 
     private LocationProvider getWorldProvider(World world) {
