@@ -4,20 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 import org.bukkit.util.StringUtil;
 
 import me.ford.srt.commands.SubCommand;
 import me.ford.srt.config.Messages;
-import me.ford.srt.locations.AbstractLocationProvider;
+import me.ford.srt.locations.perworld.ComplexLocationProvider;
 
 public class RemoveLocationSub extends SubCommand {
     private static final String USAGE = "/srt removeloc <name>";
     private static final String PERMS = "srt.commands.removeloc";
-    private final AbstractLocationProvider provider;
+    private final ComplexLocationProvider provider;
     private final Messages messages;
 
-    public RemoveLocationSub(AbstractLocationProvider provider, Messages messages) {
+    public RemoveLocationSub(ComplexLocationProvider provider, Messages messages) {
         this.provider = provider;
         this.messages = messages;
     }
@@ -25,8 +27,12 @@ public class RemoveLocationSub extends SubCommand {
     @Override
     public List<String> onTabComplete(CommandSender sender, String[] args) {
         List<String> list = new ArrayList<>();
+        World world = null;
+        if (sender instanceof Player) {
+            world = ((Player) sender).getWorld();
+        }
         if (args.length == 1) {
-            return StringUtil.copyPartialMatches(args[0], provider.getNames(), list);
+            return StringUtil.copyPartialMatches(args[0], provider.getNames(world), list);
         }
         return list;
     }
@@ -44,8 +50,13 @@ public class RemoveLocationSub extends SubCommand {
             return true;
         }
 
+        World world = null;
+        if (sender instanceof Player) {
+            world = ((Player) sender).getWorld();
+        }
+
         // remove
-        Location loc = provider.removeLocation(locName);
+        Location loc = provider.removeLocation(world, locName);
         sender.sendMessage(messages.getRemovedLocationMessage(locName, loc));
         return true;
     }

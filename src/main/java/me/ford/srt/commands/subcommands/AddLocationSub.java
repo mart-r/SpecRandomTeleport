@@ -9,15 +9,15 @@ import org.bukkit.entity.Player;
 
 import me.ford.srt.commands.SubCommand;
 import me.ford.srt.config.Messages;
-import me.ford.srt.locations.AbstractLocationProvider;
+import me.ford.srt.locations.perworld.ComplexLocationProvider;
 
 public class AddLocationSub extends SubCommand {
     private static final String USAGE = "/srt addloc <name>";
     private static final String PERMS = "srt.commands.addloc";
-    private final AbstractLocationProvider provider;
+    private final ComplexLocationProvider provider;
     private final Messages messages;
 
-    public AddLocationSub(AbstractLocationProvider provider, Messages messages) {
+    public AddLocationSub(ComplexLocationProvider provider, Messages messages) {
         this.provider = provider;
         this.messages = messages;
     }

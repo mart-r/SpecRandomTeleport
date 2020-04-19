@@ -13,13 +13,14 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 
 import me.ford.srt.ISpecRandomTeleport;
+import me.ford.srt.locations.perworld.ComplexLocationProvider;
 
 public class ActivationListener implements Listener {
     private final Set<UUID> activateNext = new HashSet<>();
     private final Set<UUID> deleteNext = new HashSet<>();
     private final ISpecRandomTeleport srt;
     private ActivationLocationProvider activationProvider = null;
-    private LocationProvider locationProvider = null;
+    private ComplexLocationProvider locationProvider = null;
 
     public ActivationListener(ISpecRandomTeleport srt) {
         this.srt = srt;
@@ -89,7 +90,7 @@ public class ActivationListener implements Listener {
             return;
         if (!activationProvider.isActivationLocation(block.getLocation()))
             return;
-        NamedLocation nLoc = locationProvider.getRandomLocation();
+        NamedLocation nLoc = locationProvider.getRandomLocation(block.getWorld());
         Location loc = nLoc.getLocation();
         Player player = event.getPlayer();
         String msg = srt.getMessages().getTeleportingMessage(nLoc);

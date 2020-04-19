@@ -4,21 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.util.StringUtil;
 
 import me.ford.srt.commands.SubCommand;
 import me.ford.srt.config.Messages;
-import me.ford.srt.locations.AbstractLocationProvider;
+import me.ford.srt.locations.perworld.ComplexLocationProvider;
 
 public class MoveLocationSub extends SubCommand {
     private static final String USAGE = "/srt moveloc <name>";
     private static final String PERMS = "srt.commands.moveloc";
-    private final AbstractLocationProvider provider;
+    private final ComplexLocationProvider provider;
     private final Messages messages;
 
-    public MoveLocationSub(AbstractLocationProvider provider, Messages messages) {
+    public MoveLocationSub(ComplexLocationProvider provider, Messages messages) {
         this.provider = provider;
         this.messages = messages;
     }
@@ -26,8 +27,14 @@ public class MoveLocationSub extends SubCommand {
     @Override
     public List<String> onTabComplete(CommandSender sender, String[] args) {
         List<String> list = new ArrayList<>();
+        World world;
+        if (sender instanceof Player) {
+            world = ((Player) sender).getWorld();
+        } else {
+            return list; // no tab-completion for console - they cannot move locations
+        }
         if (args.length == 1) {
-            return StringUtil.copyPartialMatches(args[0], provider.getNames(), list);
+            return StringUtil.copyPartialMatches(args[0], provider.getNames(world), list);
         }
         return list;
     }

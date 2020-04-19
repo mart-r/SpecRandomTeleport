@@ -731,8 +731,7 @@ public class MockPlayer extends MockCommandSender implements Player {
 
     @Override
     public World getWorld() {
-        // TODO Auto-generated method stub
-        return null;
+        return loc == null ? null : loc.getWorld();
     }
 
     @Override

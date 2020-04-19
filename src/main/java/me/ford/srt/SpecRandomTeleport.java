@@ -8,12 +8,12 @@ import me.ford.srt.config.Settings;
 import me.ford.srt.locations.ActivationListener;
 import me.ford.srt.locations.ActivationLocationProvider;
 import me.ford.srt.locations.SimplyActivationLocationProvider;
-import me.ford.srt.locations.LocationProvider;
+import me.ford.srt.locations.perworld.ComplexLocationProvider;
 
 public class SpecRandomTeleport extends SchedulingSpecRandomTeleport {
     private Messages messages;
     private Settings settings;
-    private LocationProvider locationProvider;
+    private ComplexLocationProvider locationProvider;
     private ActivationLocationProvider activationProvider;
 
     @Override
@@ -27,7 +27,7 @@ public class SpecRandomTeleport extends SchedulingSpecRandomTeleport {
         ActivationListener activationListener = new ActivationListener(this);
         getServer().getPluginManager().registerEvents(activationListener, this);
 
-        locationProvider = new LocationProvider(this);
+        locationProvider = new ComplexLocationProvider(this);
         activationProvider = new SimplyActivationLocationProvider(this, activationListener);
 
         getCommand("specrandomteleport").setExecutor(new SRTCommand(this));
@@ -48,7 +48,7 @@ public class SpecRandomTeleport extends SchedulingSpecRandomTeleport {
     }
 
     @Override
-    public LocationProvider getLocationProvider() {
+    public ComplexLocationProvider getLocationProvider() {
         return locationProvider;
     }
 

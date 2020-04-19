@@ -9,7 +9,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import me.ford.srt.config.Messages;
 import me.ford.srt.config.Settings;
 import me.ford.srt.locations.ActivationLocationProvider;
-import me.ford.srt.locations.LocationProvider;
+import me.ford.srt.locations.perworld.ComplexLocationProvider;
 
 public interface ISpecRandomTeleport extends CustomScheduler {
 
@@ -31,7 +31,7 @@ public interface ISpecRandomTeleport extends CustomScheduler {
 
     public Messages getMessages();
 
-    public LocationProvider getLocationProvider();
+    public ComplexLocationProvider getLocationProvider();
 
     public ActivationLocationProvider getActivationLocationProvider();
 

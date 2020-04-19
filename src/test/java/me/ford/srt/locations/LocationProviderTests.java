@@ -18,12 +18,16 @@ public class LocationProviderTests {
     @Before
     public void setUp() {
         srt = new MockSpecRandomTeleport();
-        provider = srt.getLocationProvider();
+        provider = new LocationProvider(srt);
     }
 
     @After
     public void tearDown() {
         srt.disable();
+        File file = provider.getFile();
+        if (file.exists()) {
+            file.delete();
+        }
     }
 
     @Test

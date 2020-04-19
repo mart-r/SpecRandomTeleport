@@ -52,8 +52,20 @@ public class PerWorldLocationProvider implements PerWorldNamedLocationProvider {
         provider.setLocation(name, loc);
     }
 
+    /**
+     * If world is null, then the location with the name from the first world
+     * encountered that has a location with such a name will be removed
+     */
     @Override
     public Location removeLocation(World world, String name) {
+        if (world == null) {
+            for (World cworld : worldProviders.keySet()) {
+                Location loc = removeLocation(cworld, name);
+                if (loc != null) {
+                    return loc;
+                }
+            }
+        }
         LocationProvider provider = getWorldProvider(world);
         if (provider == null)
             return null;
@@ -70,6 +82,13 @@ public class PerWorldLocationProvider implements PerWorldNamedLocationProvider {
 
     @Override
     public List<NamedLocation> getLocations(World world) {
+        if (world == null) {
+            List<NamedLocation> map = new ArrayList<>();
+            for (World cworld : worldProviders.keySet()) {
+                map.addAll(getLocations(cworld));
+            }
+            return map;
+        }
         LocationProvider provider = getWorldProvider(world);
         if (provider == null)
             return new ArrayList<>();
@@ -78,6 +97,13 @@ public class PerWorldLocationProvider implements PerWorldNamedLocationProvider {
 
     @Override
     public Set<String> getNames(World world) {
+        if (world == null) {
+            Set<String> names = new HashSet<>();
+            for (World cworld : worldProviders.keySet()) {
+                names.addAll(getNames(cworld));
+            }
+            return names;
+        }
         LocationProvider provider = getWorldProvider(world);
         if (provider == null)
             return new HashSet<>();

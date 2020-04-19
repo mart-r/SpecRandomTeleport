@@ -9,16 +9,16 @@ import org.bukkit.entity.Player;
 
 import me.ford.srt.commands.SubCommand;
 import me.ford.srt.config.Messages;
-import me.ford.srt.locations.AbstractLocationProvider;
 import me.ford.srt.locations.NamedLocation;
+import me.ford.srt.locations.perworld.ComplexLocationProvider;
 
 public class UseSub extends SubCommand {
     private static final String USAGE = "/srt use";
     private static final String PERMS = "srt.commands.use";
-    private final AbstractLocationProvider provider;
+    private final ComplexLocationProvider provider;
     private final Messages messages;
 
-    public UseSub(AbstractLocationProvider provider, Messages messages) {
+    public UseSub(ComplexLocationProvider provider, Messages messages) {
         this.provider = provider;
         this.messages = messages;
     }
@@ -35,7 +35,7 @@ public class UseSub extends SubCommand {
             return true;
         }
         Player player = (Player) sender;
-        NamedLocation nLoc = provider.getRandomLocation();
+        NamedLocation nLoc = provider.getRandomLocation(player.getWorld());
         if (nLoc == null) {
             sender.sendMessage(messages.getNoLocationsSetMessage());
             return true;

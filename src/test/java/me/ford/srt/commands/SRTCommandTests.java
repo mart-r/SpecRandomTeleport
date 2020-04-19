@@ -7,8 +7,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import me.ford.srt.config.Messages;
-import me.ford.srt.locations.LocationProvider;
 import me.ford.srt.locations.NamedLocation;
+import me.ford.srt.locations.perworld.ComplexLocationProvider;
 import me.ford.srt.mock.MockCommandSender;
 import me.ford.srt.mock.MockPlayer;
 import me.ford.srt.mock.MockSpecRandomTeleport;
@@ -62,15 +62,15 @@ public class SRTCommandTests {
         player.setLocation(loc);
         assertCommand(player, "addloc " + locName, messages.getAddedLocationMessage(locName, loc));
 
-        LocationProvider locProv = srt.getLocationProvider();
+        ComplexLocationProvider locProv = srt.getLocationProvider();
 
-        Assert.assertEquals(locProv.getLocation(locName), loc);
-        Assert.assertTrue(locProv.getLocations().contains(new NamedLocation(locName, loc)));
-        Assert.assertTrue(locProv.getLocations().size() == 1);
-        Assert.assertEquals(locProv.getLocations().get(0), new NamedLocation(locName, loc));
-        Assert.assertEquals(locProv.getRandomLocation(), new NamedLocation(locName, loc));
-        Assert.assertEquals(locProv.getLocation(locName), loc);
-        Assert.assertEquals(locProv.getRandomLocation().getLocation(), loc);
+        Assert.assertEquals(locProv.getLocation(loc.getWorld(), locName), loc);
+        Assert.assertTrue(locProv.getLocations(loc.getWorld()).contains(new NamedLocation(locName, loc)));
+        Assert.assertTrue(locProv.getLocations(loc.getWorld()).size() == 1);
+        Assert.assertEquals(locProv.getLocations(loc.getWorld()).get(0), new NamedLocation(locName, loc));
+        Assert.assertEquals(locProv.getRandomLocation(loc.getWorld()), new NamedLocation(locName, loc));
+        Assert.assertEquals(locProv.getLocation(loc.getWorld(), locName), loc);
+        Assert.assertEquals(locProv.getRandomLocation(loc.getWorld()).getLocation(), loc);
     }
 
     @Test
@@ -82,16 +82,16 @@ public class SRTCommandTests {
         String locName = "randomLocN4me";
         String worldName = "rand0mW0rlnam3";
         Location loc = new Location(new MockWorld(worldName), 33.1, 55.1, -555.11);
-        LocationProvider locProv = srt.getLocationProvider();
+        ComplexLocationProvider locProv = srt.getLocationProvider();
         locProv.setLocation(locName, loc);
 
         assertCommand(sender, "removeloc " + nonExistent, messages.getLocationDoesNotExistMessage(nonExistent));
 
-        Assert.assertTrue(locProv.getLocations().size() != 0);
+        Assert.assertTrue(locProv.getLocations(loc.getWorld()).size() != 0);
         // real deal
         assertCommand(sender, "removeloc " + locName, messages.getRemovedLocationMessage(locName, loc));
 
-        Assert.assertTrue(locProv.getLocations().size() == 0);
+        Assert.assertTrue(locProv.getLocations(loc.getWorld()).size() == 0);
     }
 
     @Test

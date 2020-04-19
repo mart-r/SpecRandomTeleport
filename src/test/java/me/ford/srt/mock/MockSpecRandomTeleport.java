@@ -15,8 +15,8 @@ import me.ford.srt.config.Messages;
 import me.ford.srt.config.Settings;
 import me.ford.srt.locations.ActivationListener;
 import me.ford.srt.locations.ActivationLocationProvider;
-import me.ford.srt.locations.LocationProvider;
 import me.ford.srt.locations.SimplyActivationLocationProvider;
+import me.ford.srt.locations.perworld.ComplexLocationProvider;
 
 public class MockSpecRandomTeleport implements ISpecRandomTeleport {
     private static final String CONFIG_NAME = "config.yml";
@@ -30,8 +30,8 @@ public class MockSpecRandomTeleport implements ISpecRandomTeleport {
     private final FileConfiguration config;
     // private final MockPluginManager pluginManager;
 
-    private final LocationProvider locationProvider;
-    private final ActivationLocationProvider activationProvider;
+    private final ComplexLocationProvider locationProvider;
+    private final SimplyActivationLocationProvider activationProvider;
 
     public MockSpecRandomTeleport() {
         scheduler = new MockScheduler();
@@ -45,7 +45,7 @@ public class MockSpecRandomTeleport implements ISpecRandomTeleport {
         ActivationListener activationListener = new ActivationListener(this);
         // pluginManager.registerEvents(activationListener, this);
 
-        locationProvider = new LocationProvider(this);
+        locationProvider = new ComplexLocationProvider(this);
         activationProvider = new SimplyActivationLocationProvider(this, activationListener);
 
         // reflection
@@ -138,7 +138,7 @@ public class MockSpecRandomTeleport implements ISpecRandomTeleport {
     }
 
     @Override
-    public LocationProvider getLocationProvider() {
+    public ComplexLocationProvider getLocationProvider() {
         return locationProvider;
     }
 
@@ -148,10 +148,15 @@ public class MockSpecRandomTeleport implements ISpecRandomTeleport {
     }
 
     public void disable() {
-        File file = locationProvider.getFile();
-        if (file.exists()) file.delete();
-        file = ((SimplyActivationLocationProvider) activationProvider).getFile();
-        if (file.exists()) file.delete();
+        for (File file : locationProvider.getFiles()) {
+            if (file.exists()) file.delete();
+            file = ((SimplyActivationLocationProvider) activationProvider).getFile();
+            if (file.exists()) file.delete();
+        }
+        File file = activationProvider.getFile();
+        if (file.exists()) {
+            file.delete();
+        }
     }
 
 }
