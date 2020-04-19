@@ -1,9 +1,7 @@
 package me.ford.srt.config;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.bukkit.Location;
 import org.junit.After;
@@ -112,11 +110,11 @@ public class MessageCodeDefaultTests extends MessageTestsBase {
 
         MockWorld world = new MockWorld(worldName);
 
-        Map<String, NamedLocation> locs = new HashMap<>();
+        List<NamedLocation> locs = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
             Location loc = getRandomLocation(world);
             String name = locName + "_" + loc.getWorld().getName() + "_" + loc.getX() + "_" + loc.getY() + "_" + loc.getZ();
-            locs.put(name, new NamedLocation(name, loc));
+            locs.add(new NamedLocation(name, loc));
         }
 
         String msg1 = defaults.getListMessage(locs);

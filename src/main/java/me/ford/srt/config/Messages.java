@@ -1,8 +1,6 @@
 package me.ford.srt.config;
 
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -70,11 +68,11 @@ public class Messages extends CustomConfigHandler {
 
     // srt list
 
-    public String getListMessage(Map<String, NamedLocation> locs) {
+    public String getListMessage(List<NamedLocation> locs) {
         StringBuilder builder = new StringBuilder(getListHeaderMessage(locs.size()));
-        for (Entry<String, NamedLocation> entry : locs.entrySet()) {
+        for (NamedLocation loc : locs) {
             builder.append("\n");
-            builder.append(getListItemMessage(entry.getValue()));
+            builder.append(getListItemMessage(loc));
         }
         return builder.toString();
     }

@@ -1,7 +1,9 @@
 package me.ford.srt.locations;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.Set;
@@ -71,8 +73,8 @@ public abstract class AbstractLocationProvider extends CustomConfigHandler imple
         return loc == null ? null : loc.getLocation();
     }
 
-    public Map<String, NamedLocation> getLocations() {
-        return new HashMap<>(locations);
+    public List<NamedLocation> getLocations() {
+        return new ArrayList<>(locations.values());
     }
 
     public Set<String> getNames() {

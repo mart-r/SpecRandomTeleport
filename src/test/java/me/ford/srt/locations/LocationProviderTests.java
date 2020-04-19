@@ -109,8 +109,8 @@ public class LocationProviderTests {
         Assert.assertTrue(provider.getNames().size() == 2);
         Assert.assertTrue(provider.getNames().contains(locName));
         Assert.assertTrue(provider.getNames().contains(locName2));
-        Assert.assertTrue(provider.getLocations().values().contains(new NamedLocation(locName, loc)));
-        Assert.assertTrue(provider.getLocations().values().contains(new NamedLocation(locName2, loc2)));
+        Assert.assertTrue(provider.getLocations().contains(new NamedLocation(locName, loc)));
+        Assert.assertTrue(provider.getLocations().contains(new NamedLocation(locName2, loc2)));
         NamedLocation rndLoc = provider.getRandomLocation();
         Assert.assertNotNull(rndLoc);
         Assert.assertTrue(rndLoc.getName().equals(locName) || rndLoc.getName().equals(locName2));
