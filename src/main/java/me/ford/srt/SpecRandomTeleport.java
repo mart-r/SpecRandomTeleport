@@ -37,18 +37,22 @@ public class SpecRandomTeleport extends SchedulingSpecRandomTeleport {
         }
     }
 
+    @Override
     public Settings getSettings() {
         return settings;
     }
 
+    @Override
     public Messages getMessages() {
         return messages;
     }
 
+    @Override
     public LocationProvider getLocationProvider() {
         return locationProvider;
     }
 
+    @Override
     public ActivationLocationProvider getActivationLocationProvider() {
         return activationProvider;
     }
