@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import me.ford.srt.config.Messages;
 import me.ford.srt.locations.LocationProvider;
+import me.ford.srt.locations.NamedLocation;
 import me.ford.srt.mock.MockCommandSender;
 import me.ford.srt.mock.MockPlayer;
 import me.ford.srt.mock.MockSpecRandomTeleport;
@@ -64,8 +65,8 @@ public class SRTCommandTests {
         LocationProvider locProv = srt.getLocationProvider();
 
         Assert.assertEquals(locProv.getLocation(locName), loc);
-        Assert.assertEquals(locProv.getLocations().get(locName), loc);
-        Assert.assertTrue(locProv.getLocations().containsValue(loc));
+        Assert.assertEquals(locProv.getLocations().get(locName), new NamedLocation(locName, loc));
+        Assert.assertTrue(locProv.getLocations().containsValue(new NamedLocation(locName, loc)));
         Assert.assertTrue(locProv.getLocations().size() == 1);
         Assert.assertEquals(locProv.getRandomLocationName(), locName);
         Assert.assertEquals(locProv.getLocation(locName), loc);

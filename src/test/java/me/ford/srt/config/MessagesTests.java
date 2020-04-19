@@ -13,6 +13,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import me.ford.srt.locations.NamedLocation;
 import me.ford.srt.mock.MockSpecRandomTeleport;
 import me.ford.srt.mock.MockWorld;
 import me.ford.srt.utils.FormatUtils;
@@ -85,10 +86,10 @@ public class MessagesTests {
         Assert.assertFalse("Has placeholder:" + msg, hasPlaceHolder(msg));
         Assert.assertTrue(contains(msg, worldName, x, y, z, locName));
 
-        Map<String, Location> locs = new HashMap<>();
+        Map<String, NamedLocation> locs = new HashMap<>();
         for (Location cloc : list) {
             String name = locName + cloc.getWorld().getName() + cloc.getX() + cloc.getY() + cloc.getZ(); // unique names
-            locs.put(name, cloc);
+            locs.put(name, new NamedLocation(name, cloc));
         }
 
         msg = messages.getListMessage(locs);

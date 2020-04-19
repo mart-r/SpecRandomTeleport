@@ -13,7 +13,7 @@ import me.ford.srt.ISpecRandomTeleport;
 import me.ford.srt.config.CustomConfigHandler;
 
 public abstract class AbstractLocationProvider extends CustomConfigHandler {
-    protected final Map<String, Location> locations = new HashMap<>();
+    protected final Map<String, NamedLocation> locations = new HashMap<>();
     private final ISpecRandomTeleport srt;
     private final Random random = ThreadLocalRandom.current();
 
@@ -32,7 +32,7 @@ public abstract class AbstractLocationProvider extends CustomConfigHandler {
                 srt.getLogger().warning("The location stored at " + key + "  in " + getFileName() + " conatins an invalid world and is thus not loadded!");
                 continue;
             }
-            locations.put(key, loc);
+            locations.put(key, new NamedLocation(key, loc));
         }
         if (locations.isEmpty()) {
             srt.getLogger().warning("No locations stored in " + getFileName() + " - the plugin will not work properly!");
@@ -51,23 +51,24 @@ public abstract class AbstractLocationProvider extends CustomConfigHandler {
     public void setLocation(String name, Location loc) {
         getConfig().set(name, loc);
         saveConfig();
-        locations.put(name, loc);
+        locations.put(name, new NamedLocation(name, loc));
     }
 
     public Location removeLocation(String name) {
-        Location loc = locations.remove(name);
+        NamedLocation loc = locations.remove(name);
         if (loc != null) {
             getConfig().set(name, null);
             saveConfig();
         }
-        return loc;
+        return loc == null ? null : loc.getLocation();
     }
 
     public Location getLocation(String name) {
-        return locations.get(name);
+        NamedLocation loc = locations.get(name);
+        return loc == null ? null : loc.getLocation();
     }
 
-    public Map<String, Location> getLocations() {
+    public Map<String, NamedLocation> getLocations() {
         return new HashMap<>(locations);
     }
 

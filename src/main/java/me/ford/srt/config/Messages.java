@@ -8,6 +8,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.Location;
 
 import me.ford.srt.ISpecRandomTeleport;
+import me.ford.srt.locations.NamedLocation;
 import me.ford.srt.utils.FormatUtils;
 
 public class Messages extends CustomConfigHandler {
@@ -61,11 +62,11 @@ public class Messages extends CustomConfigHandler {
 
     // srt list
 
-    public String getListMessage(Map<String, Location> locs) {
+    public String getListMessage(Map<String, NamedLocation> locs) {
         StringBuilder builder = new StringBuilder(getListHeaderMessage(locs.size()));
-        for (Entry<String, Location> entry : locs.entrySet()) {
+        for (Entry<String, NamedLocation> entry : locs.entrySet()) {
             builder.append("\n");
-            builder.append(getListItemMessage(entry.getKey(), entry.getValue()));
+            builder.append(getListItemMessage(entry.getValue()));
         }
         return builder.toString();
     }
@@ -77,6 +78,10 @@ public class Messages extends CustomConfigHandler {
     public String getListItemMessage(String name, Location loc) {
         return getLocationMessage("list-item", "{name}  in {world} at {x}, {y}, {z} (with {yaw}, {pitch})", loc)
                     .replace("{name}", name);
+    }
+
+    public String getListItemMessage(NamedLocation loc) {
+        return getListItemMessage(loc.getName(), loc.getLocation());
     }
 
     // srt use

@@ -12,7 +12,7 @@ import me.ford.srt.ISpecRandomTeleport;
 public class SimplyActivationLocationProvider extends AbstractLocationProvider implements ActivationLocationProvider {
     private static final String NAME = "activators.yml";
     private static final double TOL_SQUARED = 1.0D;
-    private final Collection<Location> locations;
+    private final Collection<NamedLocation> locations;
     private final ActivationListener listener;
 
     public SimplyActivationLocationProvider(ISpecRandomTeleport srt, ActivationListener listener) {
@@ -23,10 +23,11 @@ public class SimplyActivationLocationProvider extends AbstractLocationProvider i
 
     @Override
     public boolean isActivationLocation(Location loc) {
-        for (Location aLoc : locations) {
-            if (aLoc.getWorld() != loc.getWorld())
+        for (NamedLocation aLoc : locations) {
+            Location cLoc = aLoc.getLocation();
+            if (cLoc.getWorld() != loc.getWorld())
                 continue;
-            if (aLoc.distanceSquared(loc) < TOL_SQUARED) {
+            if (cLoc.distanceSquared(loc) < TOL_SQUARED) {
                 return true;
             }
         }
@@ -41,8 +42,8 @@ public class SimplyActivationLocationProvider extends AbstractLocationProvider i
     @Override
     public void removeAsActivationLocation(Location loc) {
         String name = null;
-        for (Entry<String, Location> entry : super.locations.entrySet()) {
-            if (entry.getValue().distanceSquared(loc) < TOL_SQUARED) {
+        for (Entry<String, NamedLocation> entry : super.locations.entrySet()) {
+            if (entry.getValue().getLocation().distanceSquared(loc) < TOL_SQUARED) {
                 name = entry.getKey();
                 break;
             }
@@ -61,7 +62,11 @@ public class SimplyActivationLocationProvider extends AbstractLocationProvider i
 
     @Override
     public List<Location> getAllLocations() {
-        return new ArrayList<>(locations);
+        List<Location> list = new ArrayList<>();
+        for (NamedLocation loc : locations) {
+            list.add(loc.getLocation());
+        }
+        return list;
     }
 
 }
