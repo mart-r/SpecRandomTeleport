@@ -1,5 +1,6 @@
 package me.ford.srt.locations;
 
+import java.io.File;
 import java.util.Map;
 import java.util.Set;
 
@@ -21,5 +22,7 @@ public interface PerWorldNamedLocationProvider {
     public Set<String> getNames(World world);
 
     public NamedLocation getRandomLocation(World world);
+
+    public Set<File> getFiles();
 
 }

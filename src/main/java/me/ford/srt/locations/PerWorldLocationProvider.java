@@ -1,5 +1,6 @@
 package me.ford.srt.locations;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -85,6 +86,15 @@ public class PerWorldLocationProvider implements PerWorldNamedLocationProvider {
         if (provider == null)
             return null;
         return provider.getRandomLocation();
+    }
+
+    @Override
+    public Set<File> getFiles() {
+        Set<File> files = new HashSet<>();
+        for (LocationProvider provider : worldProviders.values()) {
+            files.add(provider.getFile());
+        }
+        return files;
     }
 
 }
