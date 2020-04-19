@@ -8,6 +8,7 @@ import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
 import org.bukkit.Location;
+import org.bukkit.plugin.java.JavaPlugin;
 
 import me.ford.srt.ISpecRandomTeleport;
 import me.ford.srt.config.CustomConfigHandler;
@@ -34,7 +35,7 @@ public abstract class AbstractLocationProvider extends CustomConfigHandler {
             }
             locations.put(key, new NamedLocation(key, loc));
         }
-        if (locations.isEmpty()) {
+        if (locations.isEmpty() && srt instanceof JavaPlugin) { // skip message during testing
             srt.getLogger().warning("No locations stored in " + getFileName() + " - the plugin will not work properly!");
         }
     }
