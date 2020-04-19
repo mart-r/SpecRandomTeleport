@@ -61,7 +61,7 @@ public class MessagesTests extends MessageTestsBase {
 
     @Test
     public void activationListeItemUsesPlaceholder() {
-        String worldName = "someName";
+        String worldName = getRandomName("world");
         MockWorld world = new MockWorld(worldName);
         double x = 1.4;
         double y = 4.4;
@@ -75,7 +75,7 @@ public class MessagesTests extends MessageTestsBase {
 
     @Test
     public void activationListUsesPlaceholder() {
-        String worldName = "someN4me";
+        String worldName = getRandomName("world");
         MockWorld world = new MockWorld(worldName);
         Location loc = getRandomLocation(world);
 
@@ -92,8 +92,8 @@ public class MessagesTests extends MessageTestsBase {
 
     @Test
     public void addedLocationUsesPlaceholder() {
-        String worldName = "S0m3W00r3ld";
-        String locName = "someRandomLocation4";
+        String worldName = getRandomName("world");
+        String locName = getRandomName("loc");
         Location loc = getRandomLocation(new MockWorld(worldName));
         
         String msg = messages.getAddedLocationMessage(locName, loc);
@@ -117,8 +117,8 @@ public class MessagesTests extends MessageTestsBase {
 
     @Test
     public void listItemUsesPlaceholder() {
-        String locName = "theNam3OfTH3WLOCATI0n";
-        String worldName = "somew0nd3rfullWORLD";
+        String locName = getRandomName("loc");
+        String worldName = getRandomName("world");
         Location loc = getRandomLocation(new MockWorld(worldName));
 
         String msg = messages.getListItemMessage(locName, loc);
@@ -128,8 +128,8 @@ public class MessagesTests extends MessageTestsBase {
 
     @Test
     public void listUsesPlaceholder() {
-        String locName = "the12321Nam3OfTH3WLOCATI0n";
-        String worldName = "somew0nd3rf4412ullWORLD";
+        String locName = getRandomName("loc");
+        String worldName = getRandomName("world");
 
         MockWorld world = new MockWorld(worldName);
 
@@ -148,7 +148,7 @@ public class MessagesTests extends MessageTestsBase {
 
     @Test
     public void locationDoesNotExistUsesPlaceholder() {
-        String locName = "SomeRandomString";
+        String locName = getRandomName("loc");
         String msg = messages.getLocationDoesNotExistMessage(locName);
         Assert.assertFalse("Has placeholder:" + msg, hasPlaceHolder(msg));
         Assert.assertTrue(assertContains(msg, locName));
@@ -156,7 +156,7 @@ public class MessagesTests extends MessageTestsBase {
 
     @Test
     public void locationExistsUsesPlaceholder() {
-        String locName = "Yet4n0th3rLocationNAME";
+        String locName = getRandomName("loc");
         String msg = messages.getLocationExistsMessage(locName);
         Assert.assertFalse("Has placeholder:" + msg, hasPlaceHolder(msg));
         Assert.assertTrue(assertContains(msg, locName));
@@ -170,8 +170,8 @@ public class MessagesTests extends MessageTestsBase {
 
     @Test
     public void movedLocationUesPlaceholder() {
-        String locName = "woo_A_name";
-        Location loc = getRandomLocation(new MockWorld("SomeWorldNameNEW123"));
+        String locName = getRandomName("loc");
+        Location loc = getRandomLocation(new MockWorld(getRandomName("world")));
 
         String msg = messages.getMovedLocationMessage(locName, loc);
         Assert.assertFalse("Has placeholder:" + msg, hasPlaceHolder(msg));
@@ -192,8 +192,8 @@ public class MessagesTests extends MessageTestsBase {
 
     @Test
     public void removedLocationUsesPlaceholder() {
-        String locName = "yay-more_names";
-        Location loc = getRandomLocation(new MockWorld("TheworldISABOUTTOend"));
+        String locName = getRandomName("loc");
+        Location loc = getRandomLocation(new MockWorld(getRandomName("world")));
         String msg = messages.getRemovedLocationMessage(locName, loc);
         Assert.assertFalse("Has placeholder:" + msg, hasPlaceHolder(msg));
         Assert.assertTrue(assertContains(msg, locName, loc));
@@ -213,8 +213,8 @@ public class MessagesTests extends MessageTestsBase {
 
     @Test
     public void teleportingUesesPlaceholder() {
-        String locName = "holdyourbreath";
-        Location loc = getRandomLocation(new MockWorld("thisISTHEend"));
+        String locName = getRandomName("loc");
+        Location loc = getRandomLocation(new MockWorld(getRandomName("world")));
         String msg = messages.getTeleportingMessage(locName, loc);
         Assert.assertFalse("Has placeholder:" + msg, hasPlaceHolder(msg));
         Assert.assertTrue(assertContains(msg, locName, loc));
@@ -222,7 +222,7 @@ public class MessagesTests extends MessageTestsBase {
 
     @Test
     public void unrecognizedCommandUsesPlaceholder() {
-        String noCommand = "ThisCommandDoesNotExist";
+        String noCommand = getRandomName("commandNoExist");
         String msg = messages.getUnrecognizedCommandMessage(noCommand);
         Assert.assertFalse("Has placeholder:" + msg, hasPlaceHolder(msg));
         Assert.assertTrue(assertContains(msg, noCommand));
