@@ -23,9 +23,17 @@ public class SettingsTests {
     }
 
     @Test
-    public void methods() {
+    public void debugIsDisabled() {
         Assert.assertFalse(settings.isDebugEnabled());
+    }
+
+    @Test
+    public void metricsAreEnabled() {
         Assert.assertTrue(settings.useMetrics());
+    }
+
+    @Test
+    public void perWorldsIsEnabled() {
         Assert.assertTrue(settings.usePerWorld());
     }
 

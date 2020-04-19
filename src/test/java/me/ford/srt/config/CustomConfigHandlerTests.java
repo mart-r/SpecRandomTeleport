@@ -27,16 +27,42 @@ public class CustomConfigHandlerTests {
     }
 
     @Test
-    public void methods() {
+    public void fileNameNotNull() {
         Assert.assertNotNull(handler.getFileName());
+    }
+
+    @Test
+    public void fileNameCorrect() {
         Assert.assertEquals(fileName, handler.getFileName());
+    }
+
+    @Test
+    public void fileNotNull() {
         Assert.assertNotNull(handler.getFile());
+    }
+
+    @Test
+    public void fileCorrect() {
         Assert.assertEquals(new File(srt.getDataFolder(), fileName), handler.getFile());
+    }
+
+    @Test
+    public void configNotNull() {
         Assert.assertNotNull(handler.getConfig());
     }
 
     @Test
-    public void testSaving() {
+    public void cannotSaveDefault() {
+        File file = handler.getFile();
+        if (file.exists()) {
+            file.delete();
+        }
+        handler.saveDefaultConfig();
+        Assert.assertFalse(file.exists()); // no default to save
+    }
+
+    @Test
+    public void fileExistsAfterSave() {
         File file = handler.getFile();
         if (file.exists()) {
             file.delete();
@@ -55,17 +81,24 @@ public class CustomConfigHandlerTests {
     }
 
     @Test
-    public void testSetGet() {
+    public void getResultsInSame() {
         String path = "somePath";
         String value = "someValue";
         handler.getConfig().set(path, value);
         Assert.assertEquals(value, handler.getConfig().getString(path));
+    }
+
+    @Test
+    public void newInstanceGetsSame() {
+        String path = "som3Path";
+        double value = 3.1415;
+        handler.getConfig().set(path, value);
 
         handler.saveConfig();
         // new instance
         handler = new CustomConfigHandler(srt, handler.getFileName());
 
-        Assert.assertEquals(value, handler.getConfig().getString(path));
+        Assert.assertEquals(value, handler.getConfig().getDouble(path), 0.01);
     }
 
 }
