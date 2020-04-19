@@ -90,9 +90,13 @@ public class ActivationListener implements Listener {
             return;
         if (!activationProvider.isActivationLocation(block.getLocation()))
             return;
-        NamedLocation nLoc = locationProvider.getRandomLocation(block.getWorld());
-        Location loc = nLoc.getLocation();
         Player player = event.getPlayer();
+        NamedLocation nLoc = locationProvider.getRandomLocation(player.getWorld());
+        if (nLoc == null) {
+            player.sendMessage(srt.getMessages().getNoLocationsSetMessage());
+            return;
+        }
+        Location loc = nLoc.getLocation();
         String msg = srt.getMessages().getTeleportingMessage(nLoc);
         if (!msg.isEmpty())
             player.sendMessage(msg);
