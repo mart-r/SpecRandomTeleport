@@ -1,8 +1,10 @@
 package me.ford.srt.locations.perworld;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -67,10 +69,10 @@ public class PerWorldLocationProvider implements PerWorldNamedLocationProvider {
     }
 
     @Override
-    public Map<String, NamedLocation> getLocations(World world) {
+    public List<NamedLocation> getLocations(World world) {
         LocationProvider provider = getWorldProvider(world);
         if (provider == null)
-            return new HashMap<>();
+            return new ArrayList<>();
         return provider.getLocations();
     }
 

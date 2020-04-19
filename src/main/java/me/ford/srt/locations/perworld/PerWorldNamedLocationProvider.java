@@ -1,7 +1,7 @@
 package me.ford.srt.locations.perworld;
 
 import java.io.File;
-import java.util.Map;
+import java.util.List;
 import java.util.Set;
 
 import org.bukkit.Location;
@@ -19,7 +19,7 @@ public interface PerWorldNamedLocationProvider {
 
     public Location getLocation(World world, String name);
 
-    public Map<String, NamedLocation> getLocations(World world);
+    public List<NamedLocation> getLocations(World world);
 
     public Set<String> getNames(World world);
 

@@ -1,6 +1,6 @@
 package me.ford.srt.locations;
 
-import java.util.Map;
+import java.util.List;
 import java.util.Set;
 
 import org.bukkit.Location;
@@ -15,7 +15,7 @@ public interface NamedLocationProvider {
 
     public Location getLocation(String name);
 
-    public Map<String, NamedLocation> getLocations();
+    public List<NamedLocation> getLocations();
 
     public Set<String> getNames();
 
