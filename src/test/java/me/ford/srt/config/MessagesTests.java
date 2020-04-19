@@ -2,11 +2,9 @@ package me.ford.srt.config;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ThreadLocalRandom;
 
 import org.bukkit.Location;
 import org.junit.After;
@@ -17,9 +15,8 @@ import org.junit.Test;
 import me.ford.srt.locations.NamedLocation;
 import me.ford.srt.mock.MockSpecRandomTeleport;
 import me.ford.srt.mock.MockWorld;
-import me.ford.srt.utils.FormatUtils;
 
-public class MessagesTests {
+public class MessagesTests extends MessageTestsBase {
     private MockSpecRandomTeleport srt;
     private Messages messages;
 
@@ -52,11 +49,6 @@ public class MessagesTests {
     @Test
     public void fileCorrect() {
         Assert.assertEquals(new File(srt.getDataFolder(), "messages.yml"), messages.getFile());
-    }
-
-    private Location getRandomLocation(MockWorld world) {
-        ThreadLocalRandom r = ThreadLocalRandom.current();
-        return new Location(world, r.nextDouble()*1000, r.nextDouble() * 1000, r.nextDouble() * 1000, r.nextFloat() * 360, r.nextFloat()*180 - 90);
     }
 
     @Test
@@ -240,36 +232,6 @@ public class MessagesTests {
     public void unsuitableBlockDoesntHavePlaceholder() {
         String msg = messages.getUnsuitableBlockMessage();
         Assert.assertFalse("Has placeholder:" + msg, hasPlaceHolder(msg));
-    }
-
-    private boolean hasPlaceHolder(String msg) {
-        return msg.contains("{") || msg.contains("}");
-    }
-
-    private boolean assertContains(String msg, Object... parts) {
-        for (Object o : parts) {
-            String expected;
-            if (o instanceof Double) {
-                expected = FormatUtils.formatDouble((double) o);
-            } else if (o instanceof Float) {
-                    expected = FormatUtils.formatDouble((float) o);
-            } else if (o instanceof Collection) { // in case of collection, check recursively
-                if (!assertContains(msg, ((Collection<?>) o).toArray())) return false;
-                continue; // next
-            } else if (o instanceof Location) {
-                Location loc = (Location) o;
-                if (!assertContains(msg, loc.getWorld().getName(), loc.getX(), loc.getY(), loc.getZ(), loc.getYaw(), loc.getPitch())) return false;
-                continue;
-            } else if (o instanceof NamedLocation) {
-                NamedLocation loc = (NamedLocation) o;
-                if (!assertContains(msg, loc.getName() ,loc.getLocation())) removedLocationUsesPlaceholder();
-                continue;
-            } else {
-                expected = String.valueOf(o);
-            }
-            Assert.assertTrue(msg + " should contain " + o, msg.contains(expected));
-        }
-        return true;
     }
 
 }
